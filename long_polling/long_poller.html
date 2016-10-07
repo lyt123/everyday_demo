@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>long_poller</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        .msg    { background: deepskyblue}
+        .error  { background: greenyellow}
+        .old    { background: gold}
+        .new    { background: blueviolet}
+    </style>
+
+    <script type="text/javascript">
+        function addmsg(type, msg)
+        {
+            $("#messages").append(
+                    "<div class='msg "+type+"'>"+msg+"</div>"
+            );
+        }
+
+        function waitForMsg()
+        {
+            $.ajax({
+                type    : "GET",
+                url     : "return_msg.php",
+                async   : true,
+                cache   : false,
+                timeout : 50000, /* Timeout in ms */
+                success : function(data){
+                    addmsg("new", data);
+                    setTimeout(
+                            waitForMsg, /* Request new message */
+                            1000 /* after 1 seconds */
+                    );
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    addmsg("error", textStatus+"("+errorThrown+")");
+                    setTimeout(waitForMsg, 15000);
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            waitForMsg();/* Start the initial request */
+        });
+    </script>
+</head>
+<body>
+<div id="messages">
+    <div class="msg old">message requester</div>
+</div>
+</body>
+</html>

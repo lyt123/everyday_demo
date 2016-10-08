@@ -6,3 +6,14 @@ if(rand(1, 3) == 1){
 }
 
 echo("Hi! Have a random number: ".rand(1, 10));
+
+
+
+
+
+
+
+
+
+
+

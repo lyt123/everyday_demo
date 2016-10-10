@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form enctype="multipart/form-data" action="upload.php" method="post">
+    <input type="file" name="picture">
+    <input type="submit">
+</form>
+
+<form enctype="multipart/form-data" action="upload.php" method="post">
+    <!-- remember to add multiple="multiple" here to allow selecting multiple photos -->
+    <input type="file" name="photo[]" multiple="multiple">
+    <input type="submit">
+</form>
+</body>
+</html>

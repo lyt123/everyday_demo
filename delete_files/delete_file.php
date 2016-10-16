@@ -2,11 +2,12 @@
 /*delete the files in the folder, cannot delete the directories in the folder*/
 function deleteFiles($dirPath)
 {
-
+    //add a slash to the end of path if not exist
     if(substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
         $dirPath .= '/';
     }
 
+    //gets all the path in $dirPath
     $files = glob($dirPath . '*');
 
     foreach($files as $file) {
@@ -30,12 +31,16 @@ function deleteDir($dirPath)
     $files = glob($dirPath . '*', GLOB_MARK);
     foreach($files as $file) {
         if(is_dir($file)) {
+            //delete recursively
             deleteDir($file);
         } else {
             unlink($file);
         }
     }
 
-    rmdir($dirPath);//delete the empty directories in the dirctory to delete
+    //delete the empty directories in the dirctory to delete
+    rmdir($dirPath);
 }
+
+//call the function
 deleteDir('directory_to_delete');

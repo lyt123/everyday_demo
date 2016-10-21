@@ -7,7 +7,6 @@ foreach ($result[0] as $img_tag)
 {
     preg_match_all('/(alt|title|src)=("[^"]*")/i', $img_tag, $img[$img_tag]);
 }
-//now I extract img, title, and alt tag from the html
 
 //print_r($result);
 /*

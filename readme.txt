@@ -8,5 +8,11 @@
 8.trim_functions : usage of trim/rtrim/ltrim
 9.forceutf8 : fixUTF8 -> transfer the double(multiple) encoded utf-8 string that looks garbled;
               toUTF8  -> transfer the encoded unkwown string to utf-8
+10.extract_img : extract the title/src/alt tag in the img tag from a html page.
+    Answers from stackoverflow introduce 3 ways.
+    1 use regExp,
+    2 use php DOMDocument,
+    3 use php html parser:http://simplehtmldom.sourceforge.net/manual.htm
+11.session_id : a shopping cart example explains the theory about session_id
 
 

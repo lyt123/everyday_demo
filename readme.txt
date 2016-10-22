@@ -14,5 +14,6 @@
     2 use php DOMDocument,
     3 use php html parser:http://simplehtmldom.sourceforge.net/manual.htm
 11.session_id : a shopping cart example explains the theory about session_id
+12.custom_smarty_template : simulate assign and display funciton of smarty engine
 
 

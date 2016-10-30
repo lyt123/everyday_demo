@@ -19,7 +19,6 @@ class MyMiniSmarty
 
     function display($tpl_file)
     {
-
         //读取这个模板文件->替换可以运行php(编译后文件)!!!
         $tpl_file_path = $this->template_dir . $tpl_file;
         $complie_file_path = $this->complie_dir . "com_" . $tpl_file . ".php";

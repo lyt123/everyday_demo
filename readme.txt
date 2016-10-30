@@ -15,5 +15,8 @@
     3 use php html parser:http://simplehtmldom.sourceforge.net/manual.htm
 11.session_id : a shopping cart example explains the theory about session_id
 12.custom_smarty_template : simulate assign and display funciton of smarty engine
-
+13.extract_teacher_class_from_wyu_website_using_teacher_name_from_excel :
+    1. extract teachers' info from teacher_name.xls into an two-dimension array
+    2. use teacher's name, crawling teacher's classes from wyu university website
+    3. put teacher's classes into teacher_name.xls
 

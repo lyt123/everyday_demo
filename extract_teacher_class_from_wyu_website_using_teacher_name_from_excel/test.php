@@ -1,52 +1,54 @@
 <?php
-require_once 'request_info.php';
-
 /*
  * 1. extract teachers' info from teacher_name.xls into an two-dimension array
  * 2. use teacher's name, crawling teacher's classes from wyu university website
  * 3. put teacher's classes into teacher_name.xls
  */
+require_once 'request_info.php';
+
 function getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel()
 {
+    //include a class for excel handling
     include_once('excel/PHPExcel.php');
-    $objPHPExcel = \PHPExcel_IOFactory::load('teacher_name.xls');
-    $teacher_no_assign = getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtml($objPHPExcel);
 
-    //put teachers' classes into appropriate excel cell
-    foreach ($teacher_no_assign as $key => $item) {
-        $string = implode('\n', $item);
-        $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('K' . ($key + 2), $string);
-        $objPHPExcel->getActiveSheet()->getStyle('K' . ($key + 2))->getAlignment()->setWrapText(true);
+    //transfer the excel data into two-dimension array
+    $objPHPExcel  = \PHPExcel_IOFactory::load('teacher_name.xls');
+    $teacher_info = $objPHPExcel->getActiveSheet()->toArray(null, true, true, false);
+
+    //get teacher classes from website
+    unset($teacher_info[0]);
+
+    foreach ($teacher_info as $key => $item) {
+
+        $class_html = getTeacherClassHtmlFromShoolWebsite($item[9]);//$item[9] -> teacher name
+        $classes    = extractTeacherClassFromHtml($class_html);
+        putTeacherClassIntoExcel($key, $classes, $objPHPExcel);
     }
 
-    //prompt downloading the excel named teacher_class_filled.xls
+    //download the final excel
+    $excel_name = 'teacher_class_filled.xls';
+    promptExcelDownload($objPHPExcel, $excel_name);
+}
+
+function promptExcelDownload($objPHPExcel, $excel_name)
+{
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="teacher_class_filled.xls"');
+    header("Content-Disposition: attachment;filename='{$excel_name}'");
     header('Cache-Control: max-age=0');
     $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
     $objWriter->save('php://output');
 }
 
-function getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtml($objPHPExcel)
+function putTeacherClassIntoExcel($key, $classes, $objPHPExcel)
 {
-    //transfer the excel day into two-dimension array
-    $data = $objPHPExcel->getActiveSheet()->toArray(null, true, true, false);
-    unset($data[0]);
-
-    //teacher data begins at the second row
-    $teacher_no_assign = array();//教师不能上课的时间段
-    foreach ($data as $item) {
-        //teacher class into in the ninth element of the array
-        $teacher_no_assign[] = extractTeacherClassFromShoolWebsiteHtml($item[9]);
-    }
-    return $teacher_no_assign;
+    $string = implode('\n', $classes);
+    $objPHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('K' . ($key + 1), $string);
+    $objPHPExcel->getActiveSheet()->getStyle('K' . ($key + 1))->getAlignment()->setWrapText(true);
 }
 
-function extractTeacherClassFromShoolWebsiteHtml($teacher)
+function extractTeacherClassFromHtml($html)
 {
-    $html = getTeacherClassFromSchoolWebsite($teacher);
-
     //在html文件中加上字符编码才不会乱码
     $html = str_replace('<head>', '<head><meta http-equiv="Content-Type" content="text/html;charset=utf-8">', $html);
 
@@ -56,25 +58,25 @@ function extractTeacherClassFromShoolWebsiteHtml($teacher)
 
     //extract teacher class from the html page by element id
     $i = 0;
-    $data = array();
+    $classes = array();
     while (
     $content = $doc->getElementById('ctl00_ContentPlaceHolder1_ListViewXKH_ctrl' . $i . '_ctimeLabel')
     ) {
         if ($content->textContent)
-            $data[] = $content->textContent;
+            $classes[] = $content->textContent;
         $i++;
     }
-    return $data;
+    return $classes;
 }
 
-function getTeacherClassFromSchoolWebsite($teacher)
+function getTeacherClassHtmlFromShoolWebsite($teacher_name)
 {
     //发送到学校网站的数据
     $post_data = array(
         '__VIEWSTATE' => VALUE_FIRST,
         '__EVENTVALIDATION' => VALUE_SECOND,
         VALUE_THIRD => 'on',
-        VALUE_FORTH => $teacher,
+        VALUE_FORTH => $teacher_name,
         VALUE_FIFTH => '提交'
     );
 
@@ -90,5 +92,5 @@ function getTeacherClassFromSchoolWebsite($teacher)
     return $result;
 }
 
-//call the function bellow, teacher_class_filled.xls will be generated in current folder
 getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel();
+

@@ -12,17 +12,48 @@ function getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenIn
     include_once('excel/PHPExcel.php');
 
     //transfer the excel data into two-dimension array
-    $objPHPExcel = \PHPExcel_IOFactory::load('teacher_name.xls');
+    $objPHPExcel  = \PHPExcel_IOFactory::load('curriculum.xls');
     $teacher_info = $objPHPExcel->getActiveSheet()->toArray(null, true, true, false);
 
     //get teacher classes from website
     unset($teacher_info[0]);
-
+    unset($teacher_info[1]);
+    unset($teacher_info[2]);
+    ini_set('max_execution_time', 300);
+    $start_time = time();
+//var_dump($teacher_info);
     foreach ($teacher_info as $key => $item) {
 
-        $class_html = getTeacherClassHtmlFromShoolWebsite($item[9]);//$item[9] -> teacher name
-        $classes = extractTeacherClassFromHtml($class_html);
-        putTeacherClassIntoExcel($key, $classes, $objPHPExcel);
+
+        //如果表格最后有空行，则返回成功
+        if (!$item[0]) {
+            continue;
+        }
+
+//将毕业设计和毕业环节的课程跳过
+        if (substr($item[7], 7, 1) == ')')
+            continue;
+
+        $teacher_name = $item[10];
+//        var_dump($key);var_dump($item);continue;
+
+        if(strpos($teacher_name, '、') !== false){
+            $teacher_name = substr($teacher_name, 0, strpos($teacher_name, '、'));
+        }
+        $class_html = getTeacherClassHtmlFromShoolWebsite($teacher_name);//$item[9] -> teacher name
+
+        //如果$class_html为空字符串，则不处理
+        if($class_html){
+            $classes    = extractTeacherClassFromHtml($class_html);
+            putTeacherClassIntoExcel($key, $classes, $objPHPExcel);
+        }
+//
+//        if((time()-$start_time) > 100){
+//            $excel_name = 'teacher_class_filled.xls';
+//            promptExcelDownload($objPHPExcel, $excel_name);
+//            exit();
+//        }
+
     }
 
     //download the final excel
@@ -43,8 +74,8 @@ function putTeacherClassIntoExcel($key, $classes, $objPHPExcel)
 {
     $string = implode('\n', $classes);
     $objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue('K' . ($key + 1), $string);
-    $objPHPExcel->getActiveSheet()->getStyle('K' . ($key + 1))->getAlignment()->setWrapText(true);
+        ->setCellValue('W' . ($key + 1), $string);
+    $objPHPExcel->getActiveSheet()->getStyle('W' . ($key + 1))->getAlignment()->setWrapText(true);
 }
 
 function extractTeacherClassFromHtml($html)

@@ -17,7 +17,7 @@ var_dump($data);
 
 $str = '第1-8周星期一第3、4节';
 var_dump(substr($str, -14, 3));//a chinese character occupies 3 length
-var_dump(count([3,3,6]));// output : 3
+var_dump(count([3, 3, 6]));// output : 3
 var_dump(is_int('013J1650'));//check whether a string is number : intval() function
 
 $str = '013J1650';
@@ -28,9 +28,9 @@ var_dump(preg_match('/[a-zA-Z]/', $str));
 var_dump(implode(',', json_decode('[6]')));
 //thinkPHP framework will filter data using htmlspecialchars() by default, but this function will stop us from send a string-array
 
-$arr = [6,2,7];
+$arr = [6, 2, 7];
 sort($arr);//now $arr is sorted, pay attention to the return value of this function
-var_dump($arr); 
+var_dump($arr);
 
 $str = 'kd;kjlsdf;';
 $str2 = 'kd;kjlsdf';
@@ -49,5 +49,40 @@ function get_between($input, $start, $end)
         (strlen($input) - strpos($input, $end)) * (-1));
     return $substr;
 }
+
 $value = '123(150)';
 var_dump(get_between($value, '(', ')'));
+
+//sort an two-dimension array accoding to a particular key-value
+$test_array = [
+    [
+        'week' => 8,
+        'week_day' => '3, 6'
+    ],
+    [
+        'week' => 4,
+        'week_day' => '3, 6'
+    ],
+    [
+        'week' => 6,
+        'week_day' => '3, 6'
+    ]
+];
+foreach($test_array as $key => $item){
+    $tmp[$key] = $item['week'];
+}
+array_multisort($tmp, SORT_ASC, $test_array);
+var_dump($test_array);
+        /* output */
+//  0 =>
+//    array (size=2)
+//      'week' => int 4
+//      'week_day' => string '3, 6' (length=4)
+//  1 =>
+//    array (size=2)
+//      'week' => int 6
+//      'week_day' => string '3, 6' (length=4)
+//  2 =>
+//    array (size=2)
+//      'week' => int 8
+//      'week_day' => string '3, 6' (length=4)

@@ -21,4 +21,5 @@
     3. put teacher's classes into teacher_name.xls
 14.custom_thinkphp_frame_with_useless_files_deleted
 15.regular_expression : some examples of php regular expression
+16.date_time_test : calculate the date of the week day
 

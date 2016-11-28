@@ -60,6 +60,9 @@ $test_array = [
         'week_day' => '3, 6'
     ],
     [
+        'wwk' => 56
+    ],
+    [
         'week' => 4,
         'week_day' => '3, 6'
     ],
@@ -86,3 +89,7 @@ var_dump($test_array);
 //    array (size=2)
 //      'week' => int 8
 //      'week_day' => string '3, 6' (length=4)
+// ATTENTION: the above $tmp can get by $tmp = array_column($test_array, 'week');
+var_dump($tmp);
+var_dump(array_column($test_array, 'week'));
+//exit();

@@ -93,3 +93,51 @@ var_dump($test_array);
 var_dump($tmp);
 var_dump(array_column($test_array, 'week'));
 //exit();
+
+//strpos($str, $needle) !== false       ->      check whether $needle exists in $str
+//strval(); transfer a number to a string
+$str = [
+    '1,2,4,7,8,9',
+    '13,14,15'
+];
+$number = 13;
+foreach($str as $item){
+    var_dump(strpos($item, strval($number)));
+}
+
+//data format transfer
+function reoganizeData($weeks)
+{
+    $length = count($weeks);
+    $j = 0;
+    $arrays = array();
+    for($i = 0; $i < $length; $i++){
+        if(($weeks[$i+1]-$weeks[$i]) == 1){
+            $arrays[$j][] =  $weeks[$i];
+        }else{
+            $arrays[$j][] = $weeks[$i];
+            $j++;
+        }
+    }
+//    return $arrays;
+
+    $week_string = '';
+    foreach($arrays as $array){
+        $length = count($array);
+        if($length > 1){
+            $week_string .= "{$array[0]}-".end($array).',';
+        }else{
+            $week_string .= "{$array[0]},";
+        }
+    }
+    $week_string = rtrim($week_string, ',');
+
+    return $week_string;
+}
+
+$str = '1,2,3,6,7,8,13';
+var_dump(reoganizeData(explode(',', $str)));
+//output : '1,2,3,6,7,8,13';
+//return $arrays;  =>  output array(array(1,2,3), array(6,7,8), array(13));
+//end($array); -> return the last element of the array
+

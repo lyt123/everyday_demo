@@ -141,3 +141,7 @@ var_dump(reoganizeData(explode(',', $str)));
 //return $arrays;  =>  output array(array(1,2,3), array(6,7,8), array(13));
 //end($array); -> return the last element of the array
 
+//trim all the space in the string
+$test_string = 'kdsf dsklj  sdlfjk   lsdfkj';
+$result = str_replace(' ', '', $test_string);
+var_dump($result);

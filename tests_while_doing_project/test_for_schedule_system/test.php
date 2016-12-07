@@ -145,3 +145,63 @@ var_dump(reoganizeData(explode(',', $str)));
 $test_string = 'kdsf dsklj  sdlfjk   lsdfkj';
 $result = str_replace(' ', '', $test_string);
 var_dump($result);
+
+//Create multidimensional array unique for any single key index.
+$details = array(
+    0 => array("id"=>"1", "name"=>"Mike",    "num"=>"9876543210"),
+    1 => array("id"=>"2", "name"=>"Carissa", "num"=>"08548596258"),
+    2 => array("id"=>"1", "name"=>"Mathew",  "num"=>"784581254"),
+);
+
+function unique_multidim_array($array, $key) {
+    $temp_array = array();
+    $i = 0;
+    $key_array = array();
+
+    foreach($array as $val) {
+        if (!in_array($val[$key], $key_array)) {
+            $key_array[$i] = $val[$key];
+            $temp_array[$i] = $val;
+        }
+        $i++;
+    }
+    return $temp_array;
+}
+
+$details = unique_multidim_array($details,'id');
+var_dump($details);
+//Output :
+//  $details = array(
+//      0 => array("id"=>"1","name"=>"Mike","num"=>"9876543210"),
+//      1 => array("id"=>"2","name"=>"Carissa","num"=>"08548596258"),
+//  );
+
+//the following function still can not work
+function unique_multidim_array_by_multikey($origin_array, $key_array)
+{
+    $temp_array = array();
+
+    foreach ($origin_array as $single_origin_array) {
+        var_dump($single_origin_array);
+        foreach ($temp_array as $single_tmp_array) {
+            var_dump($single_tmp_array);
+            foreach ($key_array as $single_key) {
+                var_dump($single_key);
+                if ($single_origin_array[$single_key] != $single_tmp_array[$single_key]) {
+                    $temp_array[] = $single_origin_array;
+                }
+            }
+        }
+    }
+
+    return $temp_array;
+}
+$origin_array = array(
+    array('name' => '英语', 'combine_status' => '1'),
+    array('name' => '高数', 'combine_status' => '2'),
+    array('name' => '英语', 'combine_status' => '1'),
+    array('name' => '电工', 'combine_status' => '1'),
+);
+$key_array = array('name', 'combine_status');
+
+var_dump(unique_multidim_array_by_multikey($origin_array, $key_array));

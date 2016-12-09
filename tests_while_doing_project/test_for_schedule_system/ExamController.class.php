@@ -3,30 +3,54 @@
 namespace Admin\Controller;
 
 class ExamController extends CourseExcelImportController{
-    public function dd()
+
+    public function outputOfficialCourseOfOneSemester()
     {
-        foreach ($search_data as $item) {
-            $course_data = D('Course')->getData(array('code' => $item['code'], 'class_id' => $item['class_id']));
-            $data[$j]['id'] = $item['id'];
-            $data[$j]['open_class_academy'] = current(D('SelectBook')->getData(array('class_name' => current(D('Class')->getData(array('id' => $item['class_id']), array('name'))), 'name' => $course_data['name']), array('open_class_academy')));
-            $data[$j]['have_class_academy'] = current(D('SelectBook')->getData(array('class_name' => current(D('Class')->getData(array('id' => $item['class_id']), array('name'))), 'name' => $course_data['name']), array('have_class_academy')));
-            $data[$j]['class_name'] = current(D('Class')->getData(array('id' => $item['class_id']), array('name')));
-            $data[$j]['student_sum'] = current(D('Class')->getData(array('id' => $item['class_id']), array('student_sum')));
-            $data[$j]['code'] = $item['code'];
-            $data[$j]['name'] = $course_data['name'];
-            $data[$j]['examine_way'] = transferExamineWay(1);
-            $data[$j]['time_total'] = $course_data['time_total'];
-            $data[$j]['teacher_name'] = current(D('Teacher')->getData(array('id' => $course_data['teacher_id']), array('name')));
-            $data[$j]['time'] = $this->transferPeriodToDate($item['period'], $exam_week);
-            if ($item['classroom_time_id']) {
-                $data[$j]['classroom'] = '马兰芳教学楼' . current(D('ClassroomTime')->getData(array('id' => $item['classroom_time_id']), array('number')));
-            } elseif ($item['other_classroom']) {
-                $data[$j]['classroom'] = $item['other_classroom'];
-            }else {
-                $data[$j]['classroom'] = '';
+        $model = D('SelectBook');
+
+        include_once __PUBLIC__ . '/plugins/excel/PHPexcel.php';
+        $objPHPExcel = new \PHPExcel();
+
+        $model->setOfficialCourseOfOneSemesterExcelTitle($objPHPExcel);
+
+        $course_data = D('Course')
+            ->table('course co, class cl')
+            ->field('co.*')
+            ->where('co.class_id = cl.id and cl.type <> 1 and cl.type <> 2')
+            ->order('class_id')
+            ->select();
+        $course_data = $model->processData($course_data);
+
+        $excel_data = array();
+        $i = 0;
+        $j = 0;
+        $class_ids = array();
+        foreach ($course_data as $item) {
+            //序号要跟随班级递增
+            if (in_array($item['class_id'], $class_ids)) {
+                $excel_data[$i][0] = $j;
+            } else {
+                $excel_data[$i][0] = ++$j;
+                $class_ids[] = $item['class_id'];
             }
-            $data[$j]['monitor_teacher_name'] = $item['monitor_teacher_name'] ? $item['monitor_teacher_name'] : '';
-            $j++;
+            $excel_data[$i][1] = $item['academy'];
+            $excel_data[$i][2] = $item['class_name'];
+            $excel_data[$i][3] = $item['student_sum'];
+            $excel_data[$i][4] = $item['code'];
+            $excel_data[$i][5] = $item['name'];
+            $excel_data[$i][6] = $item['examine_way'];
+            $excel_data[$i][7] = $item['time_total'];
+            $excel_data[$i][8] = $item['time_theory'];
+            $excel_data[$i][9] = $item['time_practice'];
+            $excel_data[$i][10] = $item['teacher'];
+            $excel_data[$i][11] = '';
+            $excel_data[$i][12] = '';
+            $excel_data[$i][13] = $item['comment'];
+            $i++;
         }
+
+        automaticWrapText($objPHPExcel, count($excel_data) + 5);
+        $objPHPExcel->getActiveSheet()->fromArray($excel_data, NULL, 'A4');
+        promptExcelDownload($objPHPExcel, '学期课程表.xls');
     }
 }

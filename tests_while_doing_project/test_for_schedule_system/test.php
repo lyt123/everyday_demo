@@ -205,3 +205,7 @@ $origin_array = array(
 $key_array = array('name', 'combine_status');
 
 var_dump(unique_multidim_array_by_multikey($origin_array, $key_array));
+
+//substr() test
+$str = '文学院教务员';
+var_dump(substr($str, -3, 3));

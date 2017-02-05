@@ -41,7 +41,7 @@ function promptExcelDownload($objPHPExcel, $excel_name)
 
 function putTeacherClassIntoExcel($key, $classes, $objPHPExcel)
 {
-    $string = implode('\n', $classes);
+    $string = implode("n", $classes);
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue('K' . ($key + 1), $string);
     $objPHPExcel->getActiveSheet()->getStyle('K' . ($key + 1))->getAlignment()->setWrapText(true);

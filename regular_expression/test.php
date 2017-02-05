@@ -17,6 +17,7 @@
 /*test 3*/
 //$regex = "/[a-zA-Z]+ \d+/";
 //$data = preg_match_all($regex, "June 24", $out);
+//var_dump($out);
 /*test 4*/
 //$pattern = "/[a-zA-Z]+ (\d+)/";
 //$input_str = "June 24, August 13, and December 30";
@@ -40,6 +41,7 @@
 /*test 7*/
 //$text = 'ab2sq)(&*(%$%^$@%n23f9';
 //$variable = preg_replace('/[^a-zA-Z0-9.]/','a',$text);
+//var_dump($variable);
 /*test 8*/
 //$text = 'Hi, its me, Niko from Austria';
 //$variable = preg_replace('/(Niko.*?) from/', '$1 Gomez', $text);
@@ -52,7 +54,9 @@
 //$text = 'hi, my site is http://example.com, and on my page, at http://example.com/page37/trid.html i wrote something..';
 //$variable = preg_replace("/[[:alpha:]]+:\/\/[^<>[:space:]]+[[:alnum:]\/]/",'<a href="\\0">\\0</a>', $text);
 //var_dump($variable);
-
+$text = "a23983298";
+preg_match("/[a-zA-Z]{1}([0-9]|[_.]){5,10}/", $text, $result);
+var_dump($result);
 
 
 

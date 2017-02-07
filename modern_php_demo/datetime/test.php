@@ -9,7 +9,7 @@ $datetime1 = new DateTime();
 // stationary format
 $datetime2 = new DateTime('2014-04-27 5:03 AM');
 
-// you can specify date format
+// specify date format
 $datetime3 = DateTime::createFromFormat('M j, Y H:i:s', 'Jan 2, 2014 23:04:12');
 
 echo $datetime1->format('Y-m-d H:i:s');
@@ -37,7 +37,7 @@ $period = new DatePeriod(
     $start,
     $interval,
     3,
-    DatePeriod::EXCLUDE_START_DATE
+    DatePeriod::EXCLUDE_START_DATE // exclude the start and the end date
 );
 
 foreach ($period as $nextDateTime) {

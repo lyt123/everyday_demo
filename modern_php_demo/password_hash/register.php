@@ -14,9 +14,9 @@ try {
 
     // Create password hash
     $passwordHash = password_hash(
-       $password,
-       PASSWORD_DEFAULT,
-       ['cost' => 12]
+        $password,
+        PASSWORD_DEFAULT,
+        ['cost' => 12]
     );
     if ($passwordHash === false) {
         throw new Exception('Password hash failed');

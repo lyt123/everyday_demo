@@ -176,36 +176,6 @@ var_dump($details);
 //      1 => array("id"=>"2","name"=>"Carissa","num"=>"08548596258"),
 //  );
 
-//the following function still can not work
-function unique_multidim_array_by_multikey($origin_array, $key_array)
-{
-    $temp_array = array();
-
-    foreach ($origin_array as $single_origin_array) {
-        var_dump($single_origin_array);
-        foreach ($temp_array as $single_tmp_array) {
-            var_dump($single_tmp_array);
-            foreach ($key_array as $single_key) {
-                var_dump($single_key);
-                if ($single_origin_array[$single_key] != $single_tmp_array[$single_key]) {
-                    $temp_array[] = $single_origin_array;
-                }
-            }
-        }
-    }
-
-    return $temp_array;
-}
-$origin_array = array(
-    array('name' => '英语', 'combine_status' => '1'),
-    array('name' => '高数', 'combine_status' => '2'),
-    array('name' => '英语', 'combine_status' => '1'),
-    array('name' => '电工', 'combine_status' => '1'),
-);
-$key_array = array('name', 'combine_status');
-
-var_dump(unique_multidim_array_by_multikey($origin_array, $key_array));
-
 //substr() test
 $str = '文学院教务员';
 var_dump(substr($str, -3, 3));

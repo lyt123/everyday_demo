@@ -6,7 +6,7 @@ if(!empty($_FILES['picture']) && is_uploaded_file($_FILES['picture']['tmp_name']
     $uploaded_file = $_FILES['picture']['tmp_name'];
     $move_to_file = $_SERVER['DOCUMENT_ROOT'].'/everyday_demo/upload_picture/picture/'.$_FILES['picture']['name'];
     var_dump('haha');
-    var_dump($uploaded_file);exit();
+    var_dump($uploaded_file);
     if(move_uploaded_file($uploaded_file, iconv("utf-8", "gb2312", $move_to_file))) {
         /*
          * iconv() to enable file name to be chinese

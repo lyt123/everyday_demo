@@ -47,6 +47,6 @@ function zip_file_prompt_download($file_path, $file_name)
     @readfile($file_path);
 }
 
-//call function : attention->if you download the zip file the second time, you may need to first delete the test.zip file generate in te first call.
+//call function : attention->if you download the zip file the second time, you may need to first delete the test.zip file generate in the first call.
 compress_directory_to_zip_file('./files_to_compress/', './files_to_compress/test.zip');
 zip_file_prompt_download('./files_to_compress/test.zip', 'test');

@@ -21,6 +21,7 @@ function getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenIn
     foreach ($teacher_info as $key => $item) {
 
         $class_html = getTeacherClassHtmlFromShoolWebsite($item[9]);//$item[9] -> teacher name
+        echo $class_html;exit();
         $classes = extractTeacherClassFromHtml($class_html);
         putTeacherClassIntoExcel($key, $classes, $objPHPExcel);
     }

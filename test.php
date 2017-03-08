@@ -28,3 +28,18 @@
 //var_dump($result2);
 //var_dump(empty($test));
 //var_dump(isset($test));
+//var_dump(date('m月d日',1483804800));
+//var_dump(date('m月d日',1479830400));
+/*$a=array(
+    1=>1,
+    3=>3,
+    6=>6
+);
+sort($a);
+var_dump($a);*/
+//output :
+//array (size=3)
+//  0 => int 1
+//  1 => int 3
+//  2 => int 6
+var_dump($_SERVER);

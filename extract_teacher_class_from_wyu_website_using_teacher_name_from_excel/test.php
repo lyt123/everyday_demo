@@ -21,7 +21,6 @@ function getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenIn
     foreach ($teacher_info as $key => $item) {
 
         $class_html = getTeacherClassHtmlFromShoolWebsite($item[9]);//$item[9] -> teacher name
-        echo $class_html;exit();
         $classes = extractTeacherClassFromHtml($class_html);
         putTeacherClassIntoExcel($key, $classes, $objPHPExcel);
     }
@@ -61,7 +60,7 @@ function extractTeacherClassFromHtml($html)
     $i = 0;
     $classes = array();
     while (
-    $content = $doc->getElementById('ctl00_ContentPlaceHolder1_ListViewXKH_ctrl' . $i . '_ctimeLabel')
+    $content = $doc->getElementById('ctl00_ContentPlaceHolder1_ListViewXKQ_ctrl' . $i . '_ctimeLabel')
     ) {
         if ($content->textContent)
             $classes[] = $content->textContent;

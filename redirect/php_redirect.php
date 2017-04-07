@@ -22,3 +22,8 @@
 }
 redirect('http://github.com/lyt123/everyday_demo');*/
 ?>
+<?php
+//meta标签实现跳转
+$url = "http://localhost/index.html";
+$str = '<meta http-equiv="Refresh" content="0;url=' . $url . '">';
+exit($str);

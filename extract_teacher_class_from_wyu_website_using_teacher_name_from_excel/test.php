@@ -92,5 +92,8 @@ function getTeacherClassHtmlFromShoolWebsite($teacher_name)
     return $result;
 }
 
-getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel();
+//getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel();
 
+//echo getTeacherClassHtmlFromShoolWebsite('刘佳');
+$html = getTeacherClassHtmlFromShoolWebsite('刘佳');
+var_dump(extractTeacherClassFromHtml($html));

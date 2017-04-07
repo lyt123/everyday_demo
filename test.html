@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    nice
-</body>
-<script type="text/javascript">
-    var array = [1, 2];
-    $string = array.toString();
-    console.log($string);
+<script type='text/javascript'>
+    $("#rank_pic  img").click(function () {
+        $pfz = ($(this).prevAll().length + 1) * 0.5;
+        $.ajax({
+            type: "POST",
+            url: "pf.php",
+            //这里可以通过用户点击图片位置来prevAll来确定分数
+            data: "id=100&pfz=" + $pfz,
+            success: function (msg) {
+                alert("Data Saved: " + msg);
+            }
+        });
+    });
 </script>
-</html>

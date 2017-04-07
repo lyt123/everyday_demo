@@ -42,4 +42,18 @@ var_dump($a);*/
 //  0 => int 1
 //  1 => int 3
 //  2 => int 6
-var_dump($_SERVER);
+//var_dump($_SERVER);
+//php获取变量名(未成功)
+//$tt='abcd';
+//$ret=getVarName($tt);
+//function getVarName($tst)
+//{
+//    $allDefVar = get_defined_vars();var_dump(key($allDefVar));
+//    $varName   = array_keys($allDefVar,$tst);
+//    return $varName;
+//}
+//var_dump($ret);
+//$str = '1周:4节(马兰芳教学楼101)2-4、6-8周:4节(综合实验楼204)10周:4节(综合实验楼204/214)';
+//$save_data = explode(')', $str);
+//var_dump($save_data);
+var_dump(dirname(__FILE__));

@@ -11,6 +11,18 @@
 //var_dump("3:".ob_get_contents());
 //echo 4;
 
+//echo 'haha';
+//for($i = 0; $i < 10; $i++)
+//{
+//    echo $i;
+//    sleep(1);
+//    flush();
+//}
+
+echo 'hello100';
+header('charset=utf-8');
+echo 'hello200';
+
 //output
 /*
 12
@@ -56,4 +68,4 @@ var_dump($a);*/
 //$str = '1周:4节(马兰芳教学楼101)2-4、6-8周:4节(综合实验楼204)10周:4节(综合实验楼204/214)';
 //$save_data = explode(')', $str);
 //var_dump($save_data);
-var_dump(dirname(__FILE__));
+//var_dump(dirname(__FILE__));

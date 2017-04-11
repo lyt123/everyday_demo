@@ -43,10 +43,6 @@ class WxPayNotify extends WxPayNotifyReply
 	public function NotifyProcess($data, &$msg)
 	{
 		//TODO 用户基础该类之后需要重写该方法，成功的时候返回true，失败返回false
-        $data_to_save = json_encode($data);
-        $msg_to_save = json_encode($msg);
-        file_put_contents('data_to_save.json', $data_to_save);
-        file_put_contents('msg_to_save.json', $msg_to_save);
 		return true;
 	}
 	

@@ -19,9 +19,9 @@
 //    flush();
 //}
 
-echo 'hello100';
-header('charset=utf-8');
-echo 'hello200';
+//echo 'hello100';
+//header('charset=utf-8');
+//echo 'hello200';
 
 //output
 /*
@@ -69,3 +69,16 @@ var_dump($a);*/
 //$save_data = explode(')', $str);
 //var_dump($save_data);
 //var_dump(dirname(__FILE__));
+/*class Test{
+
+}
+
+function test(Test $test){
+   var_dump($test);
+}
+$mytest = new Test;
+test($mytest);*/
+//$data = 'hhah';
+//$test_data = $data ? : '';
+//var_dump($test_data);
+//output : hhar

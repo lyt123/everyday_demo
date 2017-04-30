@@ -1,53 +1,4 @@
 <?php
-/*//支付宝支付
-class Alipay {
-    public function __construct(){}
-
-    public function pay()
-    {
-        echo 'pay bill by alipay';
-    }
-}
-//微信支付
-class Wechatpay {
-    public function __construct(){}
-
-    public function pay()
-    {
-        echo 'pay bill by wechatpay';
-    }
-}
-//银联支付
-class Unionpay{
-    public function __construct(){}
-
-    public function pay()
-    {
-        echo 'pay bill by unionpay';
-    }
-}
-
-//支付账单
-class PayBill {
-
-    private $payMethod;
-
-      public function __construct( )
-      {
-          $this->payMethod= new Unionpay ();
-      }
-
-      public function  payMyBill()
-      {
-          $this->payMethod->pay();
-      }
-}
-
-
-$pb = new PayBill ();
-$pb->payMyBill();*/
-
-//进行依赖注入
 //支付类接口
 interface Pay
 {
@@ -203,11 +154,14 @@ class Container {
 
 $app = new Container();
 $app->bind("Pay", "Alipay");//Pay 为接口， Alipay 是 class Alipay
-$app->bind("tryToPayMyBill", "PayBill"); //tryToPayMyBill可以当做是Class PayBill 的服务别名
+//$app->bind("tryToPayMyBill", "PayBill"); //tryToPayMyBill可以当做是Class PayBill 的服务别名
 
 print_r($app);
 //通过字符解析，或得到了Class PayBill 的实例
-$paybill = $app->make("tryToPayMyBill");
-
+//$paybill = $app->make("tryToPayMyBill");
+//
 //因为之前已经把Pay 接口绑定为了 Alipay，所以调用pay 方法的话会显示 'pay bill by alipay '
-$paybill->payMyBill();
+//$paybill->payMyBill();
+
+$paybill_second = $app->make('PayBill');
+$paybill_second->payMyBill();

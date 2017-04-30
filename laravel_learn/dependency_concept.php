@@ -1,6 +1,6 @@
 <?php
 /* User:lyt123; Date:2017/4/24; QQ:1067081452 */
-/*//支付宝支付
+//支付宝支付
 class Alipay {
     public function __construct(){}
 
@@ -46,7 +46,7 @@ class PayBill {
 
 
 $pb = new PayBill ();
-$pb->payMyBill();*/
+$pb->payMyBill();
 
 //进行依赖注入
 /*//支付类接口
@@ -105,38 +105,6 @@ $payMethod =  new Unionpay();
 //注入依赖
 $pb = new PayBill( $payMethod );
 $pb->payMyBill();*/
-class B{
-
-}
 
 
-class A {
 
-    public function __construct(B $args)
-    {
-    }
-
-    public function dosomething()
-    {
-        echo 'Hello world';
-    }
-}
-
-//建立class A 的反射
-$reflection = new ReflectionClass('A');
-
-$b = new B();
-
-//获取class A 的实例
-//$instance = $reflection ->newInstanceArgs( [ $b ]);
-
-//$instance->dosomething(); //输出 ‘Hellow World’
-
-$constructor = $reflection->getConstructor();//获取class A 的构造函数
-
-$dependencies = $constructor->getParameters();//获取class A 的依赖类
-var_dump(($reflection));
-
-var_dump($constructor);
-
-var_dump($dependencies);

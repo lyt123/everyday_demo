@@ -82,3 +82,20 @@ test($mytest);*/
 //$test_data = $data ? : '';
 //var_dump($test_data);
 //output : hhar
+//var_dump(password_hash('a', PASSWORD_DEFAULT));
+//echo md5('123456');
+//$a = 4;
+//$b = &$a;
+//$c = &$a;
+//$c += 1;
+//$a += 1;
+//$b += 1;
+//var_dump($a, $b, $c);
+//echo md5(111111);
+
+//$data = ['dd' => 33];
+//echo $data['hh'];
+//
+//if($data['hh']){
+//    echo '33';
+//}

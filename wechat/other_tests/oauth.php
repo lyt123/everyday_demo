@@ -4,5 +4,4 @@ if (isset($_GET['code'])){
 }else{
     echo "NO CODE";
 }
-?>t
-t
+?>

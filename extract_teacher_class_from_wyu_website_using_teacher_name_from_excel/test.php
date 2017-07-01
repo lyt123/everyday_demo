@@ -96,4 +96,5 @@ function getTeacherClassHtmlFromShoolWebsite($teacher_name)
 
 //echo getTeacherClassHtmlFromShoolWebsite('刘佳');
 $html = getTeacherClassHtmlFromShoolWebsite('刘佳');
+//echo $html;
 var_dump(extractTeacherClassFromHtml($html));

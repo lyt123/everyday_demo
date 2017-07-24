@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stackoverflow</title>
+    <style type="text/css">
+        body {
+            font-family: "Courier New", Courier, monospace;
+            /*width: 1000px;*/
+            margin: 0 auto;
+            /*text-align: center;*/
+            font-size: 13px;
+            letter-spacing: 0.01em;
+        }
+
+        .big_font{
+            font-size: 20px;
+        }
+
+        .newline{
+            display: block;
+        }
+
+        .tag{
+            background: lightblue;
+            padding: 3px;
+        }
+
+        .font_color_blue{
+            color: #0088dd;
+        }
+
+        /*header*/
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        header {
+            border-top: 3px solid crimson;
+            border-bottom: 1px solid lightgrey;
+            height: 50px;
+            width: 100%;
+            /*min-height: 50px;*/
+        }
+
+        header #container {
+            max-width: 1000px;
+            position: relative;
+            min-width: 1000px;
+            margin: auto;
+        }
+
+        header ul {
+            display: inline-block;
+            position: relative;
+            top: -13px;
+            left: -35px;
+        }
+
+        header li {
+            display: inline-block;
+            margin-right: 10px;
+
+        }
+
+        header .active {
+            border-bottom: 2px solid crimson;
+        }
+
+        .main_icon {
+            display: inline-block;
+            margin-left: -30px;
+            width: 40px;
+            height: 40px;
+            margin-top: 8px;
+        }
+
+        .search_input {
+            position: absolute;
+            top: 8px;
+            left: 445px;
+            height: 29px;
+            background-image: url("images/head/input_icon.png");
+            background-repeat: no-repeat;
+            border: 1px solid lightgrey;
+            border-radius: 2px;
+            width: 235px;
+            text-indent: 33px;
+        }
+
+        .search_input:focus {
+            position: absolute;
+            top: 8px;
+            left: 15px;
+            height: 29px;
+            border: 1px solid lightgrey;
+            border-radius: 2px;
+            width: 625px;
+            text-indent: 0;
+            background: white;
+        }
+
+        .right_messages {
+            position: absolute;
+            top: 10px;
+            left: 735px;
+        }
+
+        .text_and_image {
+            display: inline-block;
+            position: relative;
+            top: -8px;
+        }
+        .text_and_image span {
+            margin: 2px;
+        }
+        .show_on_search {
+            visibility: hidden;
+        }
+
+        /*main_bar*/
+        #content {
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+        #main_content {
+            float: left;
+            width: 713px;
+        }
+        #question_sort {
+            border-bottom: 1px solid lightgrey;
+            position: relative;
+        }
+        #question_sort h1{
+            font-size: 18px;
+            font-weight: normal;
+            display: inline-block;
+        }
+        #question_sort ul {
+            display: inline-block;
+            margin: 0 auto;
+        }
+        #question_sort ul li {
+            display: inline-block;
+            margin: 0 10px;
+            border: 1px solid transparent;
+            border-top: 2px solid transparent;
+            padding-bottom: 13px;
+            padding-top: 16px;
+            /*border: 1px solid transparent ;*/
+        }
+        #question_sort ul li:hover {
+            border: 1px solid lightgrey;
+            border-top: 2px solid salmon;
+            border-bottom: 1px solid white;
+        }
+        #question_sort ul li a{
+            letter-spacing: 0.01em;
+            font-size: 11px;
+        }
+        #question_sort button{
+            position: absolute;
+            top: 14px;
+            left: 624px;
+            background: white;
+            border: 1px solid gray;
+            font-size: 10px;
+        }
+        #question_generlization {
+            border: 2px solid lightgrey;
+            padding-top: 5px;
+            margin-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 12px;
+            letter-spacing: 0.01em;
+        }
+        #question_generlization p {
+            padding-top: 7px;
+        }
+        #question_generlization a {
+            margin-right: 20px;
+            color: #0088dd;
+
+        }
+        #questions {
+            margin-top: 30px;
+        }
+        #questions article {
+            width: 100%;
+            overflow: auto;
+            position: relative;
+            border-bottom: 1px solid lightgrey;
+            min-height: 100px;
+            min-width: 700px;
+        }
+        #left_message{
+            float: left;
+            margin-bottom: 15px;
+            width: 10%;
+        }
+        #right_message{
+            float: left;
+            width: 85%;
+            min-width: 300px;
+            margin-left: 25px;
+        }
+        #right_bottom_message {
+            position: absolute;
+            right: 20px;
+            bottom: 15px;
+            color: grey;
+            font-size: 12px;
+        }
+        #right_bottom_message .ask_time {
+            display: block;
+            margin-bottom: 7px;
+        }
+        #right_bottom_message .user_info {
+            display: block;
+        }
+        #right_bottom_message .user_info .user_name {
+            display: block;
+            color: #0088dd;
+            margin-bottom: 5px;
+        }
+        #right_bottom_message .user_info img{
+            float: left;
+            margin-right: 10px;
+        }
+        #right_message h1{
+            font-size: 18px;
+            color: #0088dd;
+            letter-spacing: 0.01em;
+            font-weight: normal;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        #right_message p{
+            margin-bottom: 0;
+            margin-top: 5px;
+        }
+        #right_message ul {
+            float: left;
+            text-align: left;
+            margin-top: 3px;
+            padding-left: 2px;
+        }
+        #right_message ul li {
+            display: inline-block;
+        }
+        #left_message span{
+            display: block;
+            text-align: center;
+        }
+        #left_message .span1{
+            color: grey;
+            margin-top: 10px;
+        }
+        #left_message .span2{
+            color: green;
+            margin-top: 10px;
+            border: 1px solid green;
+            padding: 4px;
+        }
+        #left_message .span3{
+            color: darkorange;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /*aside*/
+        aside {
+            width: 357px;
+            /*min-width: 400px;*/
+            float: right;
+            margin-left:19px;
+        }
+        #aside1{
+            overflow: hidden;
+            padding-top: 5px;
+            position: relative;
+        }
+        #aside1 .bottome_span {
+
+            margin-top: 10px;
+        }
+        #aside1 .tag{
+            margin-right: 13px;
+
+        }
+        #aside1 button{
+            float: right;
+            position: absolute;
+            top: 13px;
+            right: 36px;
+            background: dodgerblue;
+            color: white;
+            border: 1px solid lightskyblue;
+            height: 30px;
+            width: 120px;
+        }
+
+        #aside2{
+            background: #FFF8DC;
+            padding: 10px;
+            margin-top: 30px;
+        }
+        #aside2 h1{
+            color: grey;
+            font-size: 16px;
+            border-bottom: 1px solid grey;
+        }
+        #aside2 p{
+            color: darkorange;
+            font-size: 14px;
+        }
+        #aside2 img {
+            float: left;
+            margin-right: 5px;
+        }
+        #aside2 span{
+
+        }
+        #aside2 div{
+
+        }
+
+        /*footer*/
+    </style>
+</head>
+<body>
+<header>
+    <div id="container">
+        <a class="main_icon" href=""><img width="35px" height="35px" src="images/head/main_icon.png" alt=""></a>
+        <ul>
+            <li class="active">Qusetions</li>
+            <li>Developer Jobs</li>
+            <li>Documentation</li>
+            <li>Tags</li>
+            <li>Users</li>
+        </ul>
+        <input class="search_input" value="[css]" type="text"/>
+        <button class="show_on_search"></button>
+ <span class="right_messages">
+    <a href=""><img src="images/head/user_head.jpg" width="30px" height="30px" alt=""></a>
+     <a class="text_and_image" href=""><span><span>1</span><img src="images/head/main_icon.png" width="5px" height="8px" alt=""><span>1</span></span></a>
+    <a href=""><img src="images/head/main_icon.png" width="25px" height="25px" alt=""></a>
+    <a href=""><img src="images/head/main_icon.png" width="25px" height="25px" alt=""></a>
+    <a href=""><img src="images/head/main_icon.png" width="25px" height="25px" alt=""></a>
+    <a href=""><img src="images/head/main_icon.png" width="25px" height="25px" alt=""></a>
+    </span>
+    </div>
+</header>
+<div id="content" style="width: 1100px;">
+    <div id="main_content">
+        <div id="question_sort">
+            <h1>Tagged Questions</h1>
+            <ul>
+                <li><a href="">info</a></li>
+                <li><a href="">newest15</a></li>
+                <li><a href="">featured</a></li>
+                <li><a href="">frequent</a></li>
+                <li><a href="">votes</a></li>
+                <li><a href="">active</a></li>
+            </ul>
+            <button>unanswered</button>
+        </div>
+        <div id="question_generlization" >
+            <p>CSS (Cascading Style Sheets) is a style sheet language used for describing the look and formatting of HTML (Hyper Text Markup Language), XML (Extensible Markup Language) documents and SVG elements including (but not limited to) colors, layout, and fonts.</p><a href="">learn more…</a><a href="">improve tag info</a><a href="">top users</a><a href="">synonyms (29)</a><a
+                href="">css jobs</a>
+        </div>
+        <div id="questions">
+            <article>
+                <div id="left_message">
+                    <span class="questions_big_span span1"><span class="big_font">2074</span><span>votes</span></span>
+                    <span class="questions_big_span span2"><span class="big_font">23</span><span>answers</span></span>
+                    <span class="questions_big_span span3"><span>1.2m</span><span>views</span></span>
+                </div>
+                <div id="right_message">
+                    <h1>Is there a CSS parent selector?</h1>
+                    <p>How do I select the element that is a direct parent of the anchor element? In example my CSS
+                        would be something like this: li < a.active { property: value; } Obviously there are ...</p>
+                    <ul>
+                        <li class="tag">css</li>
+                        <li class="tag">css</li>
+                    </ul>
+                </div>
+                <div id="right_bottom_message">
+                    <span class="ask_time" ><span >asked </span><span>Jun 18 '09</span><span> at </span><span>19:59</span></span>
+                    <span class="user_info" ><img src="images/head/user_head.jpg"
+                                             alt=""     width= "30px" height="30px"><span class="user_name">jcuenod</span><span>40  </span><span>40  </span><span>40  </span><span>40  </span>
+                    </span>
+                </div>
+            </article>    
+        </div>
+    </div>
+    <aside>
+        <div id="aside1"><span class="newline top_span"><span class="big_font newline">32,882</span><span>frequent questions tagged</span></span>
+            <button>Ask Question</button>
+            <span class="bottome_span newline"><span class="tag">css</span><a href="" ><span  class="font_color_blue"><span>about</span><span class="little_span">>></span></span></a></span></div>
+        <div id="aside2">
+            <div>
+                <h1>UPCOMING EVENTS</h1>
+            <span><a href=""><img width="20" height="20" src="images/head/main_icon.png" alt="">
+                <p>2017 Community Moderator Election end Aug 1</p>
+            </a></span></div>
+            <div>
+                <h1>UPCOMING EVENTS</h1>
+            <span><a href=""><img width="20" height="20" src="images/head/main_icon.png" alt="">
+                <p>2017 Community Moderator Election dsffsdsdffsdfdsends Aug 1</p>
+            </a></span></div>
+            <div>
+                <h1>UPCOMING EVENTS</h1>
+            <span><a href=""><img width="20" height="20" src="images/head/main_icon.png" alt="">
+                <p>2017 Community Moderator Election ends Aug 1</p>
+            </a></span></div>
+        </div>
+    </aside>
+</div>
+<!--<footer style="border: 2px solid sandybrown; clear: both">-->
+<!--sdf-->
+<!--</footer>-->
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+        /*fixed layout*/
+
+        body{
+            font-family: "Courier New", Courier, monospace;
+            font-size: 120%;
+            text-align: center;
+            width: 960px;
+            margin:  auto;
+        }
+
+        #nav, #feature, #footer {
+            height: 100%;
+            background-color: #EFEFEF;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        #header {
+            margin-bottom: 20px;
+        }
+
+        #nav ul li {
+            display: inline;
+            margin: 10px;
+        }
+
+        .article {
+            background-color: #EFEFEF;
+            width: 300px;
+            float: left;
+            margin: 10px;
+            /*若将下面的content的overflow去掉，加在这里，则不起作用，不知道什么原因*/
+        }
+
+        #content {
+            overflow: auto;
+        }
+
+
+        /*liquid layout*/
+
+        /*body{*/
+             /*font-family: "Courier New", Courier, monospace;*/
+             /*font-size: 120%;*/
+             /*text-align: center;*/
+             /*width: 90%;*/
+             /*margin:  auto;*/
+         /*}*/
+
+        /*#nav, #feature, #footer {*/
+            /*height: 5em;*/
+            /*background-color: #EFEFEF;*/
+            /*padding: 0.1em;*/
+            /*margin: 0.2em;*/
+        /*}*/
+
+        /*#header {*/
+            /*margin-bottom: 0.3em;*/
+        /*}*/
+
+        /*#nav ul li {*/
+            /*display: inline;*/
+            /*margin: 0.2em;*/
+        /*}*/
+
+        /*.article {*/
+            /*background-color: #EFEFEF;*/
+            /*width: 32%;*/
+            /*float: left;*/
+            /*!*这里margin设为百分比，缩放时才好看*!*/
+            /*margin: 0.66%;*/
+            /*height: 7em;*/
+            /*!*若将下面的content的overflow去掉，加在这里，则不起作用，不知道什么原因*!*/
+        /*}*/
+
+        /*#content {*/
+            /*overflow: auto;*/
+        /*}*/
+    </style>
+</head>
+
+<body>
+
+<div id="header">
+    <h1>Logo</h1>
+    <div id="nav">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div id="feature">
+        <p>Feature</p>
+    </div>
+    <div class="article column1">
+        <p>Column One</p>
+    </div>
+    <div class="article column2">
+        <p>Column Two</p>
+    </div>
+    <div class="article column3">
+        <p>Column Three</p>
+    </div>
+</div>
+<div id="footer">
+     02    <p>&copy; Copyright 2011</p>
+</div>
+</body>
+</html>

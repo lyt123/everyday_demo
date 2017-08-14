@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jianshu">
+<head>
+    <meta charset="UTF-8">
+    <title>简书-文章详情</title>
+  <!--   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <meta name="viewport" content="width=320">
+     <link rel="stylesheet" href="../iconfont-a/iconfont.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <style>
+      *{margin:0;
+		padding:0;
+		list-style: none;
+      }
+            body{
+      	font-size: 14px;
+      	line-height: 20px;
+      	color: #55555;
+      	background: white;
+      	/*position: relative;*/
+      }
+	#wrap{
+		width:100%;
+		/*background: #ccc;*/
+		/*position: fixed;*/
+		top:0;
+		left:0;
+		height: auto;
+		display: block;
+		background: none;
+	}
+	#wrap a{
+		background-color:#e78170;
+		text-shadow:0 1px 0 #b9351f;
+		font-size: 16px;
+		text-decoration: none;
+	}
+	.dropdown{
+		position: relative;
+		width: 45px;
+		height: 45px;
+	}
+	.dropdown .dropdown-toggle{
+		font-size: 18px;
+		color:white;
+		background-color:#e78170;
+		text-shadow:0 1px 0 #b9351f;
+		display: block;
+		padding: 10px;
+		line-height: 25px;
+		text-align: center;
+		text-decoration: none;
+	}
+	.dropdown .dropdown-menu{
+		position: absolute;
+		left:0;
+		top:35px;
+		padding: 0;
+		border-color: #d9d9d9;
+		box-shadow: none;
+		z-index: 1000;
+		margin-top:10px;
+		float: left;
+		min-width: 160px;
+		margin:2px 0 0;
+		list-style: none;
+		background-color:white;
+		background-clip: padding-box;
+		border-radius: 6px;
+		display: none;
+	}
+	.dropdown .dropdown-menu li a{
+		padding: 13px 13px 13px 15px;
+		color: white;
+		text-align: left;
+		display: block;
+		clear: both;
+		font-weight: normal;
+		line-height: 20px;
+		white-space: nowrap;
+	}
+	.dropdown .dropdown-menu i{
+		margin-right: 17px;
+		width: 16px;
+		display: inline-block;
+		text-align: center;
+		line-height: 14px;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering:auto;
+		-webkit-font-smoothing:antialiased;
+		transform: translate(0, 0);
+	}
+	.navbar-user{
+		position: fixed;
+		 top:0;
+		left:0;
+		/*right: 0;*/
+		margin-bottom: 0;
+		z-index: 1010;
+		width: 360px;
+		height: 45px;
+		/*background: white;*/
+		box-shadow: 0 1px 4px #eee;
+	}
+	.navbar-user .login{
+		position: relative;;
+		top:13px;
+		float: right;
+		margin-right: 53px;
+	}
+	.navbar-user .register{
+		margin-left: -39px;
+	}
+	 .container{
+		width: 100%;
+		margin-right:auto;margin-left: auto;
+	}
+	.container .related-avatar-group {
+		position: relative;top: 77px; padding-left:-10px; margin-bottom: 30px;
+		 /*background: red;*/display: none;
+	}
+	.container .article{
+		/*width: 340px;*/width:100%;
+		padding-left: 10px;padding-right: 10px;padding: 80px 40px 10px;bottom: 0;
+}
+	.container .author-info{
+	padding-bottom: 15px;margin-bottom: 30px;border-bottom: 1px solid #eeeeee;
+   overflow: hidden;font-size: 12px;color: #999999;
+}
+.container .author-info .follow{
+	float: right;margin-top: 10px;
+}
+.container .author-info>div{
+	margin-top: 3px;
+}
+.container .author-info .btn{
+	  box-shadow: none;text-shadow: none;display: inline-block;margin-bottom: 0; text-align: center;
+    vertical-align: middle; cursor: pointer;border: 1px solid #cccccc;
+}
+.btn.follow .fa+span, .btn.following .fa+span {
+    padding-left: 7px;
+    margin-left: 3px;
+    border-left: 1px solid #d9d9d9;
+}
+.btn.follow, .btn.following{
+	border-radius: 50px;
+    font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 22px;
+}
+.container .author-info .fa-plus:before{
+	content: "\f067";
+}
+.container .author-info .btn-success {
+    color: white;border-color: #49be38;background: #49be38;
+    }
+    .container .author-info .btn-success.follow a {
+    color: white;text-decoration: none;
+}
+    .container .author-info .btn-small{
+    	padding:2px 10px;
+    }
+    .container .author-info .avatar{
+    	float: left;width: 40px;height: 40px;margin-right: 10px;border: 1px solid white;border-radius: 50%;
+    }
+    .container .author-info .avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+    .container .author-info .label{
+    text-shadow: none; font-size: 11px; font-weight: normal;border-radius: 3px;
+    line-height: 1; color: #e78170; border: 1px solid #e78170;background: none;
+    display: inline-block; /*padding: 2px 4px;*/margin-left:-5px;vertical-align: baseline;white-space: nowrap;
+    }
+     .container .author-info .author-name{
+     	    /*margin: 0 5px;*/margin-left: -5px;color: #4094c7;text-decoration: none;
+     }
+      .container .author-info .author-name .name{padding-top:20px }
+      .container .author-info .author-name .time{}
+     .container .article .title{
+     	font-size: 32px;word-break: break-all;font-weight: bold;line-height: 1.5;
+    margin: 10px 0;font-family: inherit;color: inherit;text-rendering: optimizelegibility;
+        /*display: block;*/
+     }
+     .container .meta-top{
+     	margin:20px 0;
+     }
+     .container .meta-top span{
+     	position: relative; top: 1px;margin-right: 10px;font-size: 12px;color: #999999;
+     	    font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+     }
+     .container .article-share{
+     padding: 20px; margin: 0 -10px 45px;border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9;text-align: center;display: none;
+}
+.container .article-share .bookmark{
+margin-right: 8%;
+}
+.container .article-share a{
+	font-size: 16px;color: #3f3f3f;
+}
+.container .article-share i{
+	    margin-right: 6px;
+}
+.container .article-share .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 20px;
+    white-space: nowrap;
+}
+img{
+	    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+.container .show-content{
+	    color: #2f2f2f;font-size: 16px;font-weight: normal;line-height: 1.7;
+	    font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.container .show-content p{
+	margin: 0 0 25px 0;
+}
+.container .show-content .image-package{
+	width: 100%;height: auto;    margin: 0 auto 20px; text-align: center;
+}
+.container .show-content .image-package img{
+	cursor: -webkit-zoom-in;
+}
+.container .show-content .image-package .image-caption{
+	    min-width: 20%;min-height: 22px;display: inline-block; padding: 10px; margin: 0 auto;
+     border-bottom: 1px solid #d9d9d9;font-size: 13px; color: #999999; font-style: italic;
+    line-height: 1.7;
+}
+.container .article .show-content blockquote{
+	padding: 10px 15px;margin: 0 0 20px;
+    margin-bottom: 20px;
+    background-color: whitesmoke;
+    border-left: 4px solid #999999;
+    word-break: break-word;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 30px;
+}
+.container .visitor_edit{
+	padding-left: 10px; padding-right: 10px;width: auto;
+	margin: 0 auto 50px;font-size: 12px; color: #d5d5d5;
+}
+.container .visitor_edit .hide{
+	/*display: none;*/
+}
+.container .visitor_edit .further-reading-line {
+    width: 40px;
+    padding-top: 5px;
+    margin: 15px 0;
+    /*border-top: 1px solid #d9d9d9;*/
+}
+.container .visitor_edit ul.unstyled{
+    margin-left: 0;
+    list-style: none;
+}
+.container .visitor_edit ul{
+    padding: 0;margin: 0 0 10px 25px;
+}
+.container .visitor_edit a {
+    color: #999999;text-decoration: none;
+}
+.container .visitor_edit .fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+.container .visitor_edit .pull-right {
+    float: right;
+}
+.container .visitor_edit .pull-right .author-copyright {
+    margin: -20px 0 0 20px;
+}
+.container .visitor_edit .pull-right .author-copyright .fa{
+	margin-right: 5px;
+}
+.container .support-author{
+	width: auto; margin-top: 0;margin-right: auto;margin-left: auto;
+        padding: 25px;margin-bottom: 40px; background-color: whitesmoke;
+     border-left: 4px solid #f57e42;  box-sizing: border-box;box-shadow: 0 0 1px #d9d9d9;
+}
+.container .support-author p{
+	width: auto;    margin: 0 auto 10px; font-size: 17px;
+    font-weight: bold;
+}
+.container .support-author .btn-pay {
+    margin: 10px 15px 10px 0; color: white;border-color: #f57e42;background: #f57e42;
+       border-radius: 4px;text-shadow: none;
+    box-shadow: none;    display: inline-block;
+    padding: 4px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer; border: 1px solid #cccccc;
+}
+.container .support-author .avatar-list{
+	    display: inline-block;
+}
+.container .support-author .avatar{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 3px;
+    border: 1px solid #d9d9d9;
+    vertical-align: middle;
+    text-align: center;border-radius: 50%;
+}
+.container .support-author .avatar img{
+	border-radius: 50%;width: 100%; height: 100%;
+	box-sizing: border-box;    vertical-align: middle;
+
+}
+.container .meta-bottom{
+	    padding-left: 10px; padding-right: 10px; width: auto;margin-bottom: 40px;
+	        margin-top: 0; margin-right: auto; margin-left: auto;
+}
+.container .meta-bottom .like {
+    width: 120px;height: 36px;line-height: 38px;font-size: 14px;
+    float: left;overflow: hidden;border: 1px solid #e78170;text-align: center;
+    border-radius: 40px;text-align: center;font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.container .meta-bottom .like .like-button {
+    width: 52px; height: 38px;padding-right: 0;position: relative;display: inline-block;
+}
+.container .meta-bottom .like a.like-content{
+	position: absolute;left: 0;transition: all 0.2s cubic-bezier(0.35, 0.32, 0.4, 1.18);
+}
+.container .meta-bottom .like a{
+	color: #e78170;text-decoration: none;
+};
+.container .meta-bottom .like .like-button .like-content .fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+.container .meta-bottom .like span{
+	top: -14px; height: 20px; padding-left: 9px;position: relative;border-left: 1px solid;
+    cursor: pointer;color: #e78170;
+}
+.container .meta-bottom .share-group {
+    margin-top: 12px;
+}
+.container .meta-bottom .pull-right {
+    float: right;
+}
+.container .meta-bottom .share-group>a {
+    margin-right: 8px;
+    font-size: 18px;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+.container  .meta-bottom .share-group>a span {
+    display: none;
+}
+ .container .meta-bottom .share-group>a>span{margin-left: 5px; font-size: 14px;}
+ .container  .meta-bottom .share-group>a {
+    margin-right: 8px;}
+    .container  .meta-bottom .share-group>a .fa-weixin {
+    font-size: 16px;
+}
+.container .meta-bottom .share-group .more {
+    position: relative;
+    display: inline-block;
+}
+.container .meta-bottom .share-group .more .dropdown-menu {
+    right: -10px;
+    left: auto;
+    z-index: 2;
+}
+    </style>
+    <script src="../js/angular.js" charset="utf-8"></script>
+    <script src="../js/angular-route.js" charset="utf-8"></script>
+    <script src="../js/app.js" charset="utf-8"></script>
+</head>
+<body ng-controller="article_m">
+    <div id="wrap">
+    	<div class="dropdown">
+    		<a class="dropdown-toggle">简</a>
+    		<ul class="dropdown-menu">
+    			<li>
+    				<a href="">
+    					<i class="fa fa-home icon iconfont">&#x3435; 首页</i>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="">
+    					<i class="fa fa-home icon iconfont">&#xe610; 专题</i>
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
+    </div>
+    <div class="navbar-user">
+    	<a class="login register">
+    		<i class="iconfont">&#xe690;</i>
+    		注册
+    	</a>
+    	<a class="login">
+    		<i class="icon iconfont">&#xe600;</i>
+    		登陆
+    	</a>
+    </div>
+    <div class="container">
+    		<div class="related-avatar-group activities"></div>
+    		<div class="article">
+    			<div class="preview">
+    				<div class="author-info">
+    					<div class="btn btn-small btn-success follow">
+    						<a href="" data-signin-link="true" data-toggle="modal">
+    							<i class="iconfont">&#xe600;</i>
+    							<span>添加关注</span>
+    						</a>
+    					</div>
+    					<a href="" class="avatar">
+    						<img src="../image/2157c44fae34.png"/>
+    					</a>
+    					<span class="label">
+    						作者
+    					</span>
+    					<a href="" class="author-name blue-link">
+    						<span class="name">Alicia_ss</span>
+    					</a>
+    					<span class="time">2016.09.26 20:14</span>
+    					<div>
+    						<span>写了11358字</span>,
+    						<span>被46人关注</span>,
+    						<span>获得了212个喜欢</span>
+    					</div>
+    				</div>
+            <div ng-bind-html="articleInfo.title|showAsHtml">
+            </div>
+    				<div class="meta-top">
+    					<span class="wordage">字数2934</span>
+    					<span class="views-count">阅读3940</span>
+    					<span class="comments-count">评论64</span>
+    					<span class="likes-count">喜欢202</span>
+    				</div>
+    				<div class="article-share">
+    					<a href="" class="bookmark" data-signin-link="true" data-toggle="modal">
+    						<i class="fa fa-bookmark-o"></i>
+    						<span>收藏文章</span>
+    					</a>
+    					<span>
+    						<a href="" data-toggle="dropdown">
+    							<i class="fa fa-share-square-o"></i>
+    							分享
+    						</a>
+    						<ul class="dropdown-menu arrow-top">
+    							<li>
+    								<a href="">
+    									<img src="../image/weibo.png"/>
+    								</a>
+    							</li>
+    							<li>
+    								<a href="">
+    									<img src="../image/douban.png"/>
+    								</a>
+    							</li>
+    							<li>
+    								<a href="">
+    									<img src="../image/weibo.png"/>
+    								</a>
+    							</li>
+    							<li>
+    								<a href="">
+    									<img src="../image/renren.png"/>
+    								</a>
+    							</li>
+    						</ul>
+    					</span>
+    				</div>
+    				<div class="show-content" ng-bind-html="articleInfo.content|showAsHtml">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="visitor_edit">
+    			<div id="further-readings" data-user-slug data-user-nickname>
+    				<div id="further-reading-line" class="hide further-reading-line"></div>
+    				<ul id="further-readings-list" class="reading-list unstyled"></ul>
+    				<div id="further-reading-new" class="reading-edit">
+    					<a href="" data-signin-link="true" data-toggle="modal">
+    						<i class="iconfont">&#xe600;</i>
+    						推荐阅读
+    					</a>
+    					<div id="further-reading-form"></div>
+    				</div>
+    			</div>
+    			<div class="pull-right">
+    				<div class="author-copyright pull-right" data-toggle="tooltip" data-html="true" title data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+    					<a>
+    						<i class="iconfont">&#xe660;</i>
+    						著作权归作者所有
+    					</a>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="support-author">
+    			<p>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</p>
+    			<a class="btn btn-pay" data-toggle="modal" href="#pay-modal">¥ 打赏支持</a>
+    			<div class="avatar-list">
+    				<a href="" class="avatar" data-nickname="杨霜" data-created-at="2016-09-28T12:28:33+08:00" data-original-title title>
+    					<img src="../image/f21d49aee279.jpeg">
+    				</a>
+    			</div>
+    		</div>
+    		<div class="meta-bottom clearfix">
+    			<div class="like">
+    				<div class="like-button">
+    					<a href="" id="like-note" class="like-content" data-signin-link="true" data-toggle="modal">
+    						<i class="fa fa-hear-o"></i>
+    						喜欢
+    					</a>
+    				</div>
+    				<span id="likes-count" data-toggle="tooltip" data-placement="right" title data-original-title="查看所有喜欢的用户">364</span>
+    			</div>
+    			<div class="share-group pull-right">
+    				<a href="" data-name="weibo" >
+    					<i class="fa fa-weibo"></i>
+    					<span>分享到微博</span>
+    				</a>
+    				<a href="" data-toggle="modal" data-name="weixin">
+    					<i class="fa fa-weixin"></i><span>分享到微信</span>
+    				</a>
+    				<div class="more">
+    					<a href="" data-toggle="dropdown">
+    						更多分享
+    						<i class="fa fa-caret-down"></i>
+    					</a>
+    					<ul class="dropdown-menu arrow-top"></ul>
+    				</div>
+    			</div>
+    		</div>
+    </div>
+</body>
+</html>

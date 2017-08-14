@@ -1,0 +1,97 @@
+第一部分、基础知识
+--------------------------基础知识--------------------------
+1.AngularJS基础环境搭建
+	服务器配置
+
+2.AngularJS程序基本结构
+	ng-app		AngularJS接管的范围(子元素)
+	ng-model	数据模型(双向绑定)
+	ng-bind	输出
+	{{}}		模板(输出)
+
+实例：文章预览
+
+3.AngularJS表达式
+	{{表达式}}
+	*是NG自己的一套解析程序，不完全和JS一样
+	**ng和JS环境不互通(ng变量都是$scope的一部分)
+
+	数据初始化：ng-init="名字=值;名字=值;"
+
+class和style的另一种写法
+	ng-class="arr"
+	ng-style="json"
+
+判断写法
+	ng-if		<xxx ng-if="条件"></xxx>
+		如：i==index、arr2.indexOf(v)!=-1
+		实例：下拉搜索框
+
+	三目		{{条件?成立:不成立}}
+
+4.事件
+	ng-xxx
+
+5.循环
+	ng-repeat="value in arr/json"
+	ng-repeat="(k,v) in arr/json"
+
+实例：angular选项卡
+	内置下标：$index
+	ng-repeat和ng-click	用函数，而非表达式
+
+核心：只关心数据；完全不关心UI的事
+
+--------------------------应用知识--------------------------
+
+1.控制器
+	作用：放置大段、核心程序
+	定义：
+		var app=angular.module("app名字", [依赖模块]);
+		app.controller("控制器名称", function (){
+			//控制器代码
+		});
+	使用：
+		<xxx ng-controller="名字">
+			...
+		</xxx>
+
+2.$scope作用域对象
+	可添加、可获取
+	可监视：
+		$scope.$watch("名称", function (){
+			//变了干什么
+		}, 深度监视);
+
+3.$http数据交互
+	$http.get(url, {params}).success(function (数据){}).error();
+	$http.post...
+	$http.jsonp(url, {params: {..., cb: 'JSON_CALLBACK'}}).success().error();
+
+注意：在Angular方法之外修改数据，视图不会更新
+实例：原生Ajax使用
+
+实例：ajax留言板
+实例：百度下拉提示
+
+实例：定时器的使用
+	强制更新：$scope.$apply();
+	另一种方法：Angular定时器
+		var timer=$interval(fn, 时间);
+		var timer=$timeout(fn, 时间);
+
+		清除：
+			$interval.cancel(timer);
+			$timeout.cancel(timer);
+
+实例：时钟
+
+
+
+
+
+
+
+
+
+

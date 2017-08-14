@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#parent {width:800px; height:20px; background:#999; margin:10px auto; position:relative;}
+#div1 {width:20px; height:20px; background:#F00; position:absolute;}
+#div2 {width:400px; height:400px; background:#FFF; border:1px solid black; overflow:hidden; position:absolute;}
+#div3 {padding:10px; position:relative; top:0; left:0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oParent=document.getElementById('parent');	
+	var oDiv1=document.getElementById('div1');	
+	var oDiv2=document.getElementById('div2');	
+	var oDiv3=document.getElementById('div3');
+	
+	oDiv1.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv1.offsetLeft;
+		
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			
+			if(l<0)
+			{
+				l=0;	
+			}
+			else if(l>oParent.offsetWidth-oDiv1.offsetWidth)
+			{
+				l=oParent.offsetWidth-oDiv1.offsetWidth;	
+			}
+			oDiv1.style.left=l+'px';
+			
+			oDiv3.style.top=-(oDiv3.offsetHeight-oDiv2.offsetHeight)/(oParent.offsetWidth-oDiv1.offsetWidth)*l+'px';
+		};
+		
+		document.onmouseup=function(ev)
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;	
+		};
+		
+		return false;
+	};	
+};
+</script>
+</head>
+
+<body>
+<div id="parent">
+	<div id="div1"></div>
+</div>
+<div id="div2">
+	<div id="div3">该片2月8日的公映日期正是2016年的大年初一，也是邓超的生日，而且还是邓超和妻子孙俪领证的日子[14]  。
+拍摄期间周星驰有特别送给邓超1979年的酒（邓超是1979年生人），还带他吃了很多香港美食[15]  。
+周星驰表示邓超是个创作型演员，拍摄过程中，往往周星驰只要一种感觉，邓超却能给他很多种。周星驰觉得已经做得很好了，不需要再来了，邓超还会演出不同的方向、版本让周星驰选择[16-17]  。
+周星驰筹拍该片，专门给钱国伟打电话，邀请他成为该片的执行导演。在电影中，钱国伟还出演了一个“路人甲”的搞笑角色[18]  。
+“星女郎”林允是通过12万人海选，严格选拔后成为美人鱼的[19]  。
+拍摄期间，因冬天拍下水戏，实在太冷，除罗志祥没病过外，演员都病倒了，令周星驰要急谋对策，将大水池的水加热，额外添器材，令电影超出预算[20]  。
+拍摄期间，林允经常要吊钢丝，结果吊到一身伤，最伤的一次险令她的脸受伤[21]  。
+周星驰对电影的呈现非常严格，拍摄过程中演员的每一个动作，“特别是表情”都要做到满意，因此常常亲力亲为[22]  。
+该片是邓超和周星驰的第一次合作，拍戏的时候邓超认为周星驰并没有传说中的虐演员。而周星驰则表示是邓超的演技太好，他很放心[23]  。
+该片开拍前，邓超和周星驰两人经常深夜通话，持续了将近一个月的时间，一场一场的对戏，交流彼此的感受[10]  。
+该片拍摄期间，周星驰手把手教林允如何演戏。周星驰想让林允演成什么样，就会先演出来给林允看。林允的戏起码要拍20遍才过，甚至更多[23-24]  。
+片中罗志祥的表演，是周星驰导演一招一式教出来的。并且罗志祥在片中的很多高亢演讲台词，都刻意模仿了周星驰国语配音师石斑鱼的声音[25]  。
+罗志祥在拍摄过程中没有穿过裤子，上衣只有内衣可穿[15]  。
+林允表示在拍摄该片时和邓超合作很有压力，但是后来发现邓超人很好，知道剧组人员经常泡在冷水里，邓超都会特别准备姜茶[14]  。
+周星驰经常在片场不苟言笑，当剧组气氛很低气压时，邓超总是及时出现来救火，是剧组的减压良药[26]  。
+拍摄期间，每当周星驰手上拿个流星锤或弯刀（戏中道具）要给林允讲戏时，邓超就会过去让周星驰“冷静，以大局为重”[27]  。
+张雨绮在国外拍戏，刚好车坏了，心情欠佳的时候，接到了周星驰的电话邀请[7]  。
+为拍摄一场戏，邓超和林允吃掉了150只鸡，NG次数超过一千次。邓超为后半段一场戏抱林允抱了好几天，为此“练出了腰肌”[28]  。
+周星驰非常严谨勤力，即使在片场执行导演已经跟演员们对戏了，他还会再对一次。很多时候执行导演在场的时候，周星驰也在场，若剧组要早上六、七时开工，他七时便会到场[29]  。
+有一场戏是拍两个临时演员的推撞反应，其实该幕戏可能只有几秒钟，甚至可能最后会被剪掉。有自己坚持和要求的周星驰却亲自去跟两个临时演员对戏，那场戏足足拍了两个多小时[29]  。
+为了电影的效果，周星驰是不惜工本的。有时试过已拍好了、剪接好了的片段，周星驰看过后觉得不满意，那原本已经拆了的场景还是要重建再拍[29]  。</div>
+</div>
+
+</body>
+</html>

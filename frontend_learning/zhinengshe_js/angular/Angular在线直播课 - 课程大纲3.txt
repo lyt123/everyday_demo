@@ -1,0 +1,314 @@
+一、过滤器
+
+使用过滤器
+	currency
+	date:"yyyy-MM-dd HH:mm:ss"
+
+自定义过滤器：
+	app.filter('名字', function (){
+		return function (value, arg){};
+	});
+
+	{{value|名字:参数}}
+
+实例：会计计数法
+*适合对文本等数据进行简单处理，不适合放置过于复杂的功能(如获取数据等)
+
+--------------------------------------------------------------------------------------------------------
+
+二、指令
+
+指令(directive)：*自定义标签、自定义组件
+
+例子1：最简单的directive
+	//定义
+	app.directive('名字', function (){
+		return {
+			restrict: 'E',
+			template: "<strong>aaa</strong>"	//不一定有标签
+		};
+	});
+
+	<!--使用-->
+	<znstest></znstest>
+	<znstest/>		单标签也行，但最好别用
+
+	=============解析=============
+	restrict: 'E'	使用限制
+		E(Element)	元素型		<xxx></xxx>
+		A(Attribute)	属性型		<div xxx=""></div>
+		C(Class)	Class型		<div class="xxx"></div>
+		M(coMment)	注释型		<!-- directive:xxx -->
+			*加上replace: true
+			**两边的空格是必须的
+
+例子2：transclude(嵌入)
+	*将原始内容嵌入到新内容里面
+	restrict: 'E',
+	template: "aa <span ng-transclude></span> bbb",
+	transclude: true
+		ng-transclude：定位符，原始内容会出现在里面
+
+	<!--使用-->
+	<znstest>
+		<span>12+5</span>
+	</znstest>
+
+例子3：directive、transclude和controller整合
+	//第一步
+	app.controller('cont1', function ($scope){
+		$scope.arr=[12, 5, 8, 99];
+	});
+	<ul>
+		<li ng-repeat="v in arr">{{v}}</li>
+	</ul>
+
+	//第二步
+	app.controller('cont1', function ($scope){
+		$scope.arr=[12, 5, 8, 99];
+	});
+	app.directive('znstest', function (){
+		return {
+			restrict: 'E',
+			template: "aa <span ng-transclude></span> bbb",
+			transclude: true
+		};
+	});
+	<ul>
+		<li ng-repeat="v in arr"><znstest>{{v}}</znstest></li>
+	</ul>
+
+实例：收缩展开组件
+实例：下拉列表组件
+*适合做表现层的组件
+
+--------------------------------------------------------------------------------------------------------
+
+三、AngularJS模块化技术
+
+1.最简单的模块使用
+定义模块：
+var mod=angular.module(名称, [依赖模块]);
+
+引用模块：
+ng-app="名称"
+
+2.向模块中添加东西
+
+mod.controller(名称, function);
+mod.filter(名称, function);
+mod.directive(名称, function);
+
+3.Controller继承
+子Controller使用父Controller中的数据(父子关系体现在HTML中)
+
+--------------------------------------------------------------------------------------------------------
+
+总结：
+1.Controller
+	适合：数据的获取、整理、过滤
+	不适合：任何表现层功能
+
+2.Filter
+	适合：简单的文本、数据输出前处理
+	不适合：数据交互、任何复杂的功能
+
+3.Directive
+	适合：表现层的功能组件
+	不适合：数据相关操作
+
+4.Module
+	组件，一个组件可以包含很多Controller、Filter和Directive；而一个程序又可以包含很多组件
+
+--------------------------------------------------------------------------------------------------------
+
+四、自定义注入与通信
+创建自定义依赖注入：
+mod.factory(名称, function (){
+	return 注入项;
+});
+
+实例：返回数据-类似于json
+	*数据只保存一份，可以共享数据
+
+实例：放回方法集
+实例：返回函数-类似于$interval
+
+--------------------------------------------------------------------------------------------------------
+
+controller间通信
+1.父子级之间
+	注意：父子级scope直接修改，无法实现修改
+2.自定义依赖注入(可以实现任意对象间通信)
+3.消息机制
+	$scope.$emit('名称', 数据);		自己+父级
+	$scope.$broadcast('名称', 数据);		自己+子级
+	$scope.$on('名称', function (event, 数据){	监听
+	})
+
+--------------------------------------------------------------------------------------------------------
+
+创建依赖注入的3种方式：
+1.最简单的-factory
+mod.factory(名称, function (){
+	return 依赖项;
+});
+
+2.增强版-provider
+mod.provider(名称, function (){
+	//初始化部分-执行1次
+	this.$get=function (){
+		return 依赖项;
+	};
+});
+
+3.创建版-service
+mod.service(名称, function (){
+	this.xxx=xxx;
+});
+*类似于JS的构造函数
+
+4.常量-constant
+mod.constant(名字, 值);
+
+5.变量-value
+mod.value(名字, 值);
+
+特殊的一种：decorator，修饰一个现成的依赖项(constant除外)
+	*不能修饰常量(不然怎么叫常量)
+	testMod.decorator('名称', function ($delegate){		//必须叫$delegate
+		$delegate.xxx
+		
+		return $delegate;				//新的返回出来
+	});
+	*随便修饰多少次都可以
+
+区分：
+1.constant和value只是个值，其中constant不能修改
+2.factory最简单，provider可以配置，service是new出来的
+
+--------------------------------------------------------------------------------------------------------
+
+五、路由、多视图
+路由：
+1.根据不同的URL，调用不同的代码；把数据直接放到#后面(hash)，当刷新页面时也能保存状态
+2.特别适合App这种单页应用
+
+1.引入Angular库和Route
+	<script src="angular.js"></script>
+	<script src="angular-route.js"></script>
+
+2.创建模块
+	var app=angular.module('page1', ['ngRoute']);
+	*ngRoute是来自angular-route.js的模块，route就是通过这个实现的
+
+3.配置app
+	app.config(function ($routeProvider){
+		$routeProvider提供路由相关配置功能
+	});
+
+4.配置Route
+	$routeProvider
+	.when('地址1', {配置1})
+	.when('地址2', {配置2})
+	.when('地址3', {配置3});
+
+5.添加插入点
+	<ng-view></ng-view>
+
+--------------------------------------------------------------------------------------------------------
+
+Route配置说明：
+template-HTML模板
+	例如：'<div>{{a}}</div>'
+
+templateUrl-HTML模板地址
+	例如：'views/v2.html'
+
+controller-route所依赖的控制器
+	例如：'userCont'
+
+例子：最简单的路由使用
+HTML部分：
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<div ng-controller="cont1">
+		<a href="#/user/">用户中心</a>
+		<a href="#/article/">文章管理</a>
+		<ng-view></ng-view>
+	</div>
+
+JS部分：
+var app=angular.module('page1', ['ngRoute']);
+app.controller('cont1', function (){
+}).controller('userCont', function ($scope){
+	$scope.a=12;
+}).controller('artCont', function ($scope){
+	$scope.b=55;
+});
+
+//配置部分
+app.config(function ($routeProvider){
+	$routeProvider
+	.when('/user/', {
+		templateUrl: 'views/v1.html',
+		controller: 'userCont',
+	})
+	.when('/article/', {
+		templateUrl: 'views/v2.html',
+		controller: 'artCont'
+	});
+});
+
+--------------------------------------------------------------------------------------------------------
+
+延迟加载：
+resolve参数，用promise方式实现页面数据的延迟加载
+	resolve: {
+		  delay: function($q) {
+			var delay=$q.defer();
+			setTimeout(function (){
+				delay.resolve();		//resolve执行
+			}, 3000);
+			return delay.promise;
+		  }
+	}
+
+--------------------------------------------------------------------------------------------------------
+
+Route事件
+$routeChangeStart
+$routeChangeSuccess
+$routeChangeError
+
+$scope.$on("$routeChangeStart",function(event,next,current){
+	
+});
+
+Route参数
+#/user/?id=432223
+$routeParams
+
+--------------------------------------------------------------------------------------------------------
+
+模板的另一种写法
+
+定义模板：
+<script type="text/ng-template" id="v3.html">
+	模板内容...
+</script>
+
+使用模板-和文件一样：
+.when('/blog/', {
+	templateUrl: 'v3.html',
+	controller: 'blogCont'
+});
+
+
+
+
+
+
+
+
+

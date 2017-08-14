@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	//$http.get(url, 参数);
+	//$http.post();
+	
+	//a.php?a=xxx&b=xxx	=>	
+	$http.get('a.php', {
+		params: {a: 12, b: 5},
+		responseType: 'json'
+	}).then(function (res){
+		alert(res.data+5);
+	}, function (){
+		alert('失败了');
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+</body>
+</html>
+
+
+
+
+
+
+
+

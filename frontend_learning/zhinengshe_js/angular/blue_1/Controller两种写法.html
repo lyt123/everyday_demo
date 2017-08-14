@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('test', []);
+/*
+app.controller('cont1', function ($scope, $http){
+	$scope.a=12;
+});
+*/
+app.controller('cont1', ['$scope', '$http', function (a, b){
+	a.a=12;
+    a.c = 33;
+}]);
+</script>
+</head>
+
+<body ng-controller="cont1">
+<span>{{a}}</span>
+<span>dd{{c}}</span>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('zhangsan', function ($scope){
+	$scope.a=12;
+});
+</script>
+</head>
+
+<body>
+<div ng-controller="zhangsan">
+	a:<span>{{a}}</span>
+</div>
+	b:<span>{{a}}</span>
+</body>
+</html>

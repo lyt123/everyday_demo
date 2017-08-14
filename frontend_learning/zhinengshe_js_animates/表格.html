@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+}
+p{
+	font-weight:bold;
+	font-size:36px;
+	margin-top:10px;
+	margin-bottom:0;
+}
+#tab{
+	margin-top:20px;
+	padding:0px;
+	width:550px;
+}
+#tab tr{
+	height:60px;	
+}
+#tab tr.low{
+	height:30px;
+}
+#tab th,td{
+	padding:10px;
+}
+#tab tr.jishu{
+	background:#CCC;
+}
+#tab tr:hover{
+	background:#0F9;
+}
+#tab .title{
+	text-transform:uppercase;
+	letter-spacing:0.15em;
+}
+#tab th{
+	border-top:1px dashed black;
+	border-bottom:1px solid black;
+}
+#tab td.right{
+	text-align:right;
+}
+
+
+
+</style>
+</head>
+
+<body>
+<p>First Edition Auctions</p>
+<table id="tab">
+	<tr class="title">
+    	<th scope="col">author</th>
+    	<th scope="col">title</th>
+    	<th scope="col" class="right">reserve&amp;price</th>
+    	<th scope="col" class="right">current bid</th>
+    </tr>
+    <tr class="jishu" >
+    	<td>E.E.Cummings</td>
+    	<td>Tulips Chimneys</td>
+    	<td class="right">$200000</td>
+    	<td class="right">$264250</td>
+    </tr>
+    <tr>
+    	<td>E.E.Cummings</td>
+    	<td>Tulips Chimneys</td>
+    	<td class="right">$200000</td>
+    	<td class="right">$264250</td>
+    </tr>
+    <tr class="jishu">
+    	<td>E.E.Cummings</td>
+    	<td>Tulips Chimneys</td>
+    	<td class="right">$200000</td>
+    	<td class="right">$264250</td>
+    </tr>
+    <tr class="low">
+    	<td>E.E.Cummings</td>
+    	<td>Tulips Chimneys</td>
+    	<td class="right">$200000</td>
+    	<td class="right">$264250</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	alert(arguments.length);
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+<input type="text" ng-model="str" />
+<input type="button" value="按钮" ng-click="alert(str)" />
+</body>
+</html>

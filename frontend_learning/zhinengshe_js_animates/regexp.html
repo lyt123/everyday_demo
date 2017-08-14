@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+
+var patt1=new RegExp('e');
+document.write(patt1.exec("However lek sfldj"));
+
+var patt1=new RegExp('e', 'g');
+do{
+	result=patt1.exec("The best things in life are free");	
+	document.write(result);
+}while(result != null);
+var patt1=new RegExp('e', 'g');
+for(var i=0; i<2; i++)
+{
+	result=patt1.exec("The best things in life are free");	
+	document.write(result);
+}
+//
+var patt1=new RegExp('e');
+document.write(patt1.test("sdlj jewj l;jdf"));
+patt1.compile("d");//将patt1修改为d
+//
+var str="That's hot!";
+var patt1=/h.t/g;
+document.write(str.match(patt1));
+//
+var str=" 7@";//"@"有一个逗号显示，而"7@"，即两个以上字符时结果中没有逗号显示
+var patt1=/\B/g;
+document.write(str.match(patt1));
+//
+var str=" 7@";
+var patt1=/\B/g;
+document.write(str.match(patt1));
+//
+var str=" fg gd@";
+document.write(str.match(/\B/g));
+//
+var str="Is this all there is?";
+var patt1=/[^a-h]/g;
+document.write(str.match(patt1));
+//
+var str = "The rain in Spain stays mainly in the plain";
+var patt1 = new RegExp("ain", "g");
+patt1.test(str);
+document.write("Match found. index now at: " + patt1.lastIndex);
+</script>
+</head>
+
+<body>
+</body>
+</html>

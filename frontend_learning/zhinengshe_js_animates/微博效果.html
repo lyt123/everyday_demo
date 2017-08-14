@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+* {margin:0; padding:0;}
+#ul1 {width:400px; height:400px; border:1px solid black; margin:10px auto; overflow:hidden;}
+#ul1 li {border-bottom:1px #999 dashed; padding:4px; list-style:none; overflow:hidden; filter:alpha(opacity:0); opacity:0;}
+
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function()
+{
+	oTxt=document.getElementById('txt1');
+	oBtn=document.getElementById('btn1');
+	oUl=document.getElementById('ul1');
+	
+	oBtn.onclick=function()
+	{
+		var oLi=oUl.createElement('li');
+		oLi.innerHTML=oTxt.value;
+		
+		if(oUl.chidren.length>0)
+		{
+			oUl.insertBefore(oLi, oUl.children[0]);	
+		}
+		else 
+		{
+			oUl.appendChild(oLi);	
+		}
+		
+		//var iHeight=oUl.children[0].offsetHeight;
+		var iHeight=oLi.offsetHeight;
+		oLi.style.height='0';
+		startMove(oUl.children[0], {height: iHeight}, function(){
+			startMove(oLi , {opacity : 100});//my way is change oLi into oUl.children[0];
+		});
+		oTxt.value='';
+		
+	}
+};
+</script>
+</head>
+
+
+<body>
+<textarea id="txt1" rows="10" cols="60" style="border:1px solid black"></textarea>
+<input id="btn1" type="button" value="发布" />
+<ul id="ul1">
+
+</ul>
+</body>
+</html>

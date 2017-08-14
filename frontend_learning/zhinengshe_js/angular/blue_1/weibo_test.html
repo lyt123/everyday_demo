@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html ng-app="zns_weibo">
+<head>
+<meta charset="utf-8">
+<title>智能课堂 —— 微博ajax接口测试 - www.zhinengshe.com</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="angular.js"></script>
+<script>
+var app=angular.module('zns_weibo', []);
+
+app.controller('weibo', function ($scope, $http){
+	$scope.replies=[{id: 1, content: "试试", time: 1472568347, acc: 1, ref: 5}, {id: 2, content: "上的二二", time: 1472568547, acc: 200, ref: 1}, {id: 3, content: "独特热特特认为他", time: 1432568547, acc: 55, ref: 16}];
+});
+</script>
+</head>
+
+<body ng-controller="weibo">
+<div class="znsArea">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent">暂无留言</div>
+        <div class="messList">
+        	<div class="reply" ng-repeat="reply in replies">
+                <p class="replyContent">{{reply.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{reply.time*1000|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top">{{reply.acc}}</a>
+                        <a href="javascript:;" class="down_icon">{{reply.ref}}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="page">
+        	<a href="javascript:;" class="active">1</a>
+        	<a href="javascript:;">2</a>
+        	<a href="javascript:;">3</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

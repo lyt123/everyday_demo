@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+/*
+//闭包
+function f1(a)
+{
+	return function f2(b)
+	{
+		return a*b;	
+	}	
+};
+
+f3=f1(2);
+alert(f3(5));
+*/
+/*
+//数组的method
+var arr=[3, 63, 64];
+//arr.push(4);//往数组最后添加元素
+//arr.pop();//除去数组的最后一个元素
+arr.unshift(5);//在第一位添加元素
+arr.shift();//除去数组的第一个元素
+alert(arr.join('-'));
+*/
+/*
+//object
+var obj={
+	left:0,
+	right:3,	
+};
+delete obj.left;//delete 
+alert(obj.left);
+alert("left" in obj);
+alert("right" in obj);//"in" return true/false;
+alert(obj.right);
+*/
+/*
+//string number boolean are not objects,but string have some properties built-in;
+alert("sfdjakjajfsdl".slice(4,8));//->akja
+alert("afsdjlkfsd".indexOf('j'));//->4
+alert("   okey  \n".trim);//->okey,清楚字符串前后的空位
+*/
+/*
+//注意：Math.floor();的math首字母是大写的，参数的个数可以用arguments.length来算，step==null的妙用，
+function range(start, end, step) {
+  if (step == null) step = 1;
+  var array = [];
+
+  if (step > 0) {
+    for (var i = start; i <= end; i += step)
+      array.push(i);
+  } else {
+    for (var i = start; i >= end; i += step)
+      array.push(i);
+  }
+  return array;
+}
+
+function sum(array) {
+  var total = 0;
+  for (var i = 0; i < array.length; i++)
+    total += array[i];
+  return total;
+}
+
+console.log(range(1, 10))
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(range(5, 2, -1));
+// → [5, 4, 3, 2]
+console.log(sum(range(1, 10)));
+// → 55
+*/
+/*
+//reverse array
+function rev(arr)//产生一个对调位置的数组
+{
+	var revArr=[];
+	//revArr.unshift(arr[i]);可以用于替代下面的for循环
+	for(var i=0, j=arr.length; i<arr.length; i++, j--)
+	{	
+			revArr[j]=arr[i];	
+	}
+	return revArr;	
+};
+function revInplace(arr)//将数组在它本身上对调
+{
+	var revInArr=[];
+	var temp;
+	var len=arr.length;
+	for(var i=0; i<Math.floor(len/2); i++)
+	{
+		temp=arr[i];
+		arr[i]=arr[len-i-1];
+		arr[len-i-1]=temp;
+	}	
+	return arr;
+}
+var arr=[2, 3, 8];
+
+alert(rev(arr));
+alert(revInplace(arr));
+*/
+/**/
+function arrayToList(array)
+{
+	var list=null;
+	for(var i=array.length-1; i>=0; i--)
+		list={value:array[i], rest:list};
+	return list;	
+}
+var array=[1, 54, 65];
+console.log(arrayToList(array));
+</script>
+</head>
+<body>
+</body>
+</html>

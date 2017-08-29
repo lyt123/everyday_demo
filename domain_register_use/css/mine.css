@@ -1,0 +1,13 @@
+/* 左侧样式 */
+.auth_logo {
+    color: #EECD74;
+}
+
+/* 公用样式 */
+
+/* 设置界面样式 */
+.setting-head {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+}

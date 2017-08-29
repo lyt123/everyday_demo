@@ -1,0 +1,46 @@
+.require_star {
+    color: red;
+}
+
+/*选择开发、服务类型*/
+
+.category-list {
+    /*border: 2px solid #eee;*/
+    margin: 6% auto;
+    height: 250px;
+}
+
+    .category-list .category {
+        border-radius: 8px;
+        border: 3px solid #eee;
+        position: relative;
+        height: 180px;
+        width: 150px;
+    }
+
+    .category-list .category p {
+        color: black;
+    }
+
+    .category-list .category .logo {
+        height: 60%;
+        width: 80%;
+    }
+
+    .category-list .category .choose-tag {
+        position: absolute;
+        top: 135px;
+        left: 105px;
+    }
+
+/*填写基本信息*/
+
+.base-info {
+    border-radius: 5px;
+    background-color: #e5fee4;
+    padding: 20px 20px;
+}
+
+.dev-type {
+    margin-left: 36px;
+}

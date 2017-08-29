@@ -1,0 +1,201 @@
+.container {
+	background-color: #fff;
+}
+a {
+	color: #676a6c;
+}
+textarea {
+    overflow-y:hidden;
+}
+.date {
+    color: #999;
+    font-size: small;
+}
+.require_star {
+    color: red;
+}
+.resumeBody {
+	box-shadow: 2px 2px 5px #D3D3D3,2px -2px 5px #D3D3D3,-2px 2px 5px #D3D3D3,-2px -2px 3px #D3D3D3;
+	width: 70%;
+	min-height: 500px;
+	margin: 50px auto;
+    padding-bottom: 30px;
+	background-color: #FAFAFA;
+	font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.resumeBody header {
+	width: 100%;
+	height: 180px;
+	background:url(../img/pic07.jpg) center;
+	position: relative;
+}
+
+/*个人信息*/
+.imgbox {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	bottom: -20%;
+	left: 42.3%;
+}
+.resumeBody header img {
+	border:4px solid #f5f5f5;
+	border-radius: 50%;
+    width: 120px;
+    height: 120px;
+	position: absolute;
+	top: 0;
+	left:0;
+	cursor: pointer;
+}
+.resumeBody header input {
+	width: 90px;
+	position: absolute;
+	top: 40%;
+	left: 5%;
+	z-index: -1000;
+}
+.textInfo {
+	text-align: center;
+	color:#666;
+	margin: 8px;
+	font-size: 1.2em;
+}
+.t-name {
+	font-size: 2em;
+	color:#333;
+}
+.description {
+    display: block;
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16px;
+    width: 468px;
+    line-height: 34px;
+}
+.qq {
+    margin-left: 20px;
+}
+
+/*修改个人信息*/
+.personalInfoFrom {
+	margin-top: 40px;
+}
+.personalInfoFrom form {
+	width: 70%;
+	margin:0 auto;
+}
+
+/*个人技能*/
+.list {
+	margin: 20px auto;
+	width: 80%;
+	list-style: none;
+}
+.list li {
+	font-size: 1.12em;
+	margin-bottom: 10px;
+	position: relative;
+	padding-right: 60px;
+}
+.list li .operate {
+	text-decoration: none;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+/*社团/组织*/
+.department {
+	color:#333;
+}
+.position {
+	font-size: 0.9em;
+}
+.introduction {
+	font-size: 0.92em;
+	color: rgba(85,85,85,.9);
+    margin: 10px 20px;
+}
+
+/*共同模块*/
+.show-section {
+	overflow: hidden;
+	padding-top: 40px;
+}
+.container section i {
+	margin-right: 5px;
+}
+.edit {
+	float: right;
+	margin-right: 70px;
+	border:none;
+	font-size: 1.2em;
+	background-color: #fafafa;
+}
+.edit-section {
+	padding-bottom: 40px;
+}
+.editbtn {
+	text-align: right;
+}
+.cancel,.del {
+	background-color: #fff;
+	border:none;
+}
+.del {
+	background-color: #fafafa;
+	margin-right: 20px;
+	color: red;
+}
+.cancel {
+	color:#18A689;
+}
+.title {
+	text-align: center;
+}
+.title .title-c {
+    font-size: 16px;
+    padding: 3px 24px;
+    text-align: center;
+    background-color: #eee;
+    -moz-border-radius: 26px;
+    -webkit-border-radius: 26px;
+    border-radius: 26px;
+    margin: 0 13px;
+}
+.skill-name {
+    width: 60px;
+    text-align: right;
+}
+.skill-progress {
+    width: 80%;
+    height: 10px;
+    margin-bottom: 0;
+}
+
+.addForm, .editForm {
+    background-color: #FEFEF2;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.item-name {
+    font-size: 20px;
+}
+
+.item-name i {
+    font-size: 16px;
+    color: #C0C0C0;
+}
+
+.item-position{
+    color: #999;
+}
+
+.item-introduction {
+    margin: 10px 20px;
+}

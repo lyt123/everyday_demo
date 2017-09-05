@@ -1,0 +1,103 @@
+1.认识AngularJS
+	MVx概念
+	Angular是什么
+		扩展了HTML的功能
+		颠覆性、可扩展
+	为什么使用angular
+		避免重复劳动，专心于业务逻辑
+
+2.AngularJS基本使用
+	最简单的例子
+		ng-model
+		ng-bind
+		ng-app——范围、共存
+	Angular的特点
+		双向绑定——可输入、可输出
+		依赖注入
+			由接收方决定要什么——饭店的例子
+	ng-bind并不好
+		整个都得变
+
+3.模板技术
+	{{}}
+		可以修改，一般不用
+		angular和JS不互通
+			变量不互通、函数不互通、事件不互通
+	事件
+		onclick不行
+		ng-click
+		重复：angular必须用ng-的这一套
+			如果想要angular和JS互通，需要Controller——后面说
+
+	ng-init初始化数据
+		ng-repeat循环
+			value、(key,value)
+			数组、json
+			嵌套数据
+		不适合放太复杂的数据
+
+4.Controller
+	什么是Controller
+		控制器——业务逻辑都应该写在这里（HTML里就不应该出现大段代码，这和过去一致）
+	Controller用法1：放数据
+		$scope——只能叫这个名字
+			原因：依赖注入
+	Controller用法2：放函数
+		桥梁
+
+	依赖注入的两种方式
+		写名字——不能乱写
+			app.controller(name, function ($1, $2){});
+		数组
+			app.controller(name, ['$1', '$2', function (a, b){}]);
+
+	过滤器-filter
+		例子：item.price | currency
+		例子：item.time | date:"yyyy-MM-dd HH:mm:ss"
+		过滤、转换
+
+	链接、图片
+		ng-src
+		ng-href
+		其他常用指令：ng-show、ng-hide、ng-clack
+
+5.常用依赖项
+	$scope
+	$location
+		$location.absUrl()	整个绝对路径
+		$location.url()		path部分
+		$location.protocol()	协议部分-http
+		$location.host()		域名(不含端口)
+		$location.port()		端口
+		----------------------------------------------------
+		$location.search()		=> {xx, xx}
+		$location.search('a')		=> {a: xxx}
+		$location.search('a', 'b')		=> {a: xxx, b: xxx}
+
+6.ajax数据交互——$http
+	$http.get(url, {}).then(succ, error);
+		返回res：data
+
+	$http.get(url, {
+		params: json,
+		timeout: number,
+		responseType: ""/"text"/"json"/"blob"/...
+		cache: boolean
+	})
+
+	----------------------------------------------------
+
+	$http.get/post/header/put/delete...
+
+	promise引用方式、jsonp
+		success/error——直接出结果
+
+实例：PC端小页面（新浪微博）
+
+
+
+
+
+
+
+

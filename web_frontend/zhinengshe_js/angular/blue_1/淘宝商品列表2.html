@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.items=[
+		{name: '第衣名潮流男装男士短袖衬衫2016夏季薄款商务修身', price: 78.8, time: 1472565951383},
+		{name: 'Heilan Home/海澜之家男士纯色短袖t恤 白色V领衣服', price: 68, time: 1473565961383},
+		{name: '秋季新品男士衬衫男长袖衬衣纯棉修身型薄款商务休', price: 31.9, time: 1472565912383}
+	];
+});
+</script>
+</head>
+
+<body>
+<ul ng-controller="cont1">
+	<li ng-repeat="item in items">
+    	<h3>{{item.name}}</h3>
+        <span>{{item.price|currency}}</span>
+        <i>{{item.time|date:"yyyy年MM月dd日 HH:mm:ss"}}</i>
+    </li>
+</ul>
+</body>
+</html>
+
+
+
+
+
+
+

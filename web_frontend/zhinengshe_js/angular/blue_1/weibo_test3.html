@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html ng-app="zns_weibo">
+<head>
+<meta charset="utf-8">
+<title>智能课堂 —— 微博ajax接口测试 - www.zhinengshe.com</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="angular.js"></script>
+<script>
+var app=angular.module('zns_weibo', []);
+
+app.controller('weibo', function ($scope, $http){
+	$scope.replies=[];
+	$scope.pages=[];
+	$scope.curPage=1;
+	
+	//获取、显示留言
+	function getPage(p){
+		$scope.curPage=p;
+		setCur($scope.pages.length);
+		$http.get('weibo.php', {
+			params: {act: 'get', page: p}
+		}).success(function (arr){
+			$scope.replies=arr;
+		}).error(function (){
+			alert('读取失败，请稍后重试');
+		});
+	}
+	getPage(1);
+	$scope.getPage=getPage;
+	
+	//提交留言
+	$scope.submitMsg=function (){
+		$http.get('weibo.php', {
+			params: {act: 'add', content: $scope.inputText}
+		}).success(function (res){
+			$scope.replies.unshift({
+				id:			res.id,
+				content:	$scope.inputText,
+				time:		res.time,
+				acc:		0,
+				ref:		0
+			});
+			
+			if($scope.replies.length>6){
+				$scope.replies.pop();
+			}
+			$scope.inputText='';
+		}).error(function (){
+			alert('提交失败');
+		});
+	};
+	
+	//页码
+	function setCur(count){
+		$scope.pages=[];
+		for(var i=1;i<=count;i++){
+			if(i==$scope.curPage){
+				$scope.pages.push({num: i, className: 'active'});
+			}else{
+				$scope.pages.push({num: i, className: ''});
+			}
+		}
+	}
+	
+	$http.get('weibo.php', {
+		params: {act: 'get_page_count'}
+	}).success(function (json){
+		setCur(json.count);
+	}).error(function (){
+		alert('错误');
+	});
+	//$scope.pages=[{num: 1, className: ''},{num: 2, className: 'active'},{num: 3, className: ''}];
+	
+	//顶和踩的函数
+	$scope.fnAcc=function (id){
+		$http.get('weibo.php', {
+			params: {act: 'acc', id: id}
+		}).success(function (){
+			for(var i=0;i<$scope.replies.length;i++){
+				if($scope.replies[i].id==id){
+					$scope.replies[i].acc++;
+				}
+			}
+		}).error(function (){
+			alert('错误');
+		});
+	};
+	$scope.fnRef=function (id){
+		$http.get('weibo.php', {
+			params: {act: 'ref', id: id}
+		}).success(function (){
+			for(var i=0;i<$scope.replies.length;i++){
+				if($scope.replies[i].id==id){
+					$scope.replies[i].ref++;
+				}
+			}
+		}).error(function (){
+			alert('错误');
+		});
+	};
+});
+</script>
+</head>
+
+<body ng-controller="weibo">
+<div class="znsArea">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText" ng-model="inputText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" ng-click="submitMsg()" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent" ng-show="replies.length==0">暂无留言</div>
+        <div class="page">
+        	<a href="javascript:;" ng-repeat="item in pages" class="{{item.className}}" ng-click="getPage(item.num)">{{item.num}}</a>
+        </div>
+        <div class="messList">
+        	<div class="reply" ng-repeat="reply in replies">
+                <p class="replyContent">{{reply.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{reply.time*1000|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top" ng-click="fnAcc(reply.id)">{{reply.acc}}</a>
+                        <a href="javascript:;" class="down_icon" ng-click="fnRef(reply.id)">{{reply.ref}}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>

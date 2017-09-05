@@ -1,0 +1,91 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="controllers/user.js"></script>
+<script src="controllers/article.js"></script>
+<script>
+var app=angular.module('test', ["ngRoute", "userMod", "articleMod"]);
+
+app.config(function ($routeProvider){
+	$routeProvider
+	.when(
+		'/user',
+		{
+			templateUrl: './views/user.html',
+			controller: 'userController'
+		}
+	)
+	.when(
+		'/article',
+		{
+			templateUrl: './views/article.html',
+			controller: 'articleController',
+      //延迟加载
+      resolve: {
+        delay:function($q){
+          var delay = $q.defer();
+
+          setTimeout(function(){
+            delay.resolve();
+          }, 1000);
+          return delay.promise;
+        }
+      }
+		}
+	)
+	.when(
+		'/setting',
+		{
+			templateUrl: 'setting.html'
+		}
+	);
+});
+
+app.controller('main', function ($scope){
+	$scope.loading=false;
+	$scope.$on('$routeChangeStart', function (){
+		$scope.loading=true;
+		//alert('换页开始');
+	});
+	$scope.$on('$routeChangeSuccess', function (){
+		//alert('换页结束');
+		$scope.loading=false;
+	});
+	$scope.$on('$routeChangeError', function (){
+		alert('换页失败');
+		$scope.loading=false;
+	});
+});
+</script>
+</head>
+
+<body ng-controller="main">
+	<div ng-show="loading">正在加载...</div>
+	<a href="#/user">用户中心</a>
+	<a href="#/article?type=sport">体育赛事</a>
+	<a href="#/article?type=game">游戏新闻</a>
+	<a href="#/article?type=news">热门新闻</a>
+	<a href="#/setting">配置信息</a>
+	<ng-view></ng-view>
+<script type="text/ng-template" id="setting.html">
+	<ul>
+		<li>aaaa</li>
+	</ul>
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

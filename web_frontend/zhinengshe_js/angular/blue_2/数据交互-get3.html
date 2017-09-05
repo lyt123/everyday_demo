@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	$scope.result=0;
+	
+	/*$http.get('a.php', {params: {a: 12, b: 99}}).success(function (res){
+		$scope.result=res;
+	}).error(function (){
+	});*/
+	
+	ajax({
+		url: 'a.php',
+		type: 'get',
+		data: {a: 12, b: 99},
+		success: function (res){
+			$scope.result=res;
+			$scope.$apply();
+		}
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	{{result}}
+</body>
+</html>
+
+
+
+
+
+
+

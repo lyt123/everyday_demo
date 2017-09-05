@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.num=0;
+	
+	//$watch(谁, 干什么)
+	$scope.$watch('num', function (){
+		alert('变了');
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<input type="text" ng-model="num" />
+    {{num}}
+</body>
+</html>
+
+
+
+
+
+
+

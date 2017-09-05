@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module("test", []);
+
+app.controller('cont1', function ($scope){
+	$scope.arr=[12.5, 13.7, 99.8, 20];
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<ul>
+    	<li ng-repeat="v in arr">{{v|currency}}</li>
+    </ul>
+</body>
+</html>

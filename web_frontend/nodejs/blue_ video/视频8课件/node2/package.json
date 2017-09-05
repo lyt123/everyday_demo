@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "test233",
+        "scope": null,
+        "escapedName": "test233",
+        "name": "test233",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "E:\\node2"
+    ]
+  ],
+  "_from": "test233@latest",
+  "_id": "test233@0.0.1",
+  "_inCache": true,
+  "_location": "/test233",
+  "_nodeVersion": "6.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/test233-0.0.1.tgz_1478083482580_0.8303007700014859"
+  },
+  "_npmUser": {
+    "name": "dancingblue",
+    "email": "blue@zhinengshe.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "test233",
+    "scope": null,
+    "escapedName": "test233",
+    "name": "test233",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/test233/-/test233-0.0.1.tgz",
+  "_shasum": "88a6a5065a231232cc722d7b37450ee9423b9e05",
+  "_shrinkwrap": null,
+  "_spec": "test233",
+  "_where": "E:\\node2",
+  "author": {
+    "name": "blue"
+  },
+  "dependencies": {},
+  "description": "这是个测试包，千万别下，谁下谁怀孕",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "88a6a5065a231232cc722d7b37450ee9423b9e05",
+    "tarball": "https://registry.npmjs.org/test233/-/test233-0.0.1.tgz"
+  },
+  "keywords": [
+    "test",
+    "11",
+    "22",
+    "33"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "dancingblue",
+      "email": "blue@zhinengshe.com"
+    }
+  ],
+  "name": "test233",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}

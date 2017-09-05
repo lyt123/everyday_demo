@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="controllers/user.js"></script>
+<script>
+var app=angular.module('test', ["ngRoute", "userMod"]);
+
+app.config(function ($routeProvider){
+	$routeProvider
+	.when(
+		'/user',
+		{
+			templateUrl: './views/user.html',
+			controller: 'userController'
+		}
+	)
+	.when(
+		'/article',
+		{
+			template: '<p>aaa</p>'
+		}
+	)
+	.when(
+		'/setting',
+		{
+			template: '是打发斯蒂芬第三'
+		}
+	);
+});
+</script>
+</head>
+
+<body>
+	<a href="#/user">用户中心</a>
+	<a href="#/article">文章列表</a>
+	<a href="#/setting">配置信息</a>
+	<ng-view></ng-view>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

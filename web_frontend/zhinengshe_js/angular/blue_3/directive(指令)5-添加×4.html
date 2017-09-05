@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module("test", []);
+
+app.directive('myClose', function (){
+	var json={
+		restrict: 'A',
+		template: '<span ng-transclude></span><a href="javascript:;">{{12*5}}×</a>',
+		transclude: true
+	};
+	
+	return json;
+});
+</script>
+</head>
+
+<body>
+    <ul>
+    	<li my-close>rtertret</li>
+    	<li my-close>dfsafd</li>
+    	<li my-close>4565rty</li>
+    	<li>gfhfdgh</li>
+    	<li>dfghdfghgf</li>
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简书-首页</title>
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+  <!--   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <meta name="viewport" content="width=320">
+    <link rel="stylesheet" href="../iconfont-b/iconfont.css">
+    <style>
+      *{margin:0;
+    padding:0;
+    list-style: none;
+      }
+      body{
+        font-size: 14px;
+        line-height: 20px;
+        color: #55555;
+        background: white;
+        /*position: relative;*/
+      }
+  #wrap{
+    width:100%;
+    /*background: #ccc;*/position: fixed;top:0;left:0;height: auto;
+    display: block;background: none;
+  }
+  #wrap a{
+    background-color:#e78170;text-shadow:0 1px 0 #b9351f; font-size: 16px;text-decoration: none;
+  }
+  .dropdown{
+    position: relative;width: 45px;height: 45px;
+  }
+  .dropdown .dropdown-toggle{
+    font-size: 18px;color:white;background-color:#e78170;text-shadow:0 1px 0 #b9351f; 
+    display: block;padding: 10px;line-height: 25px;text-align: center;text-decoration: none;
+  }
+  .dropdown .dropdown-menu{
+    position: fixed;left:0;top:35px;padding: 0;border:none;
+    box-shadow: none;z-index: 1000;margin-top:10px;float: left;min-width: 160px;
+    margin:2px 0 0;list-style: none;background-color:white; background-clip: padding-box;
+    border-radius: 6px;display: none;
+  }
+  .dropdown .dropdown-menu li a{
+    padding: 13px 13px 13px 15px;color: white;text-align: left;
+    display: block;clear: both;font-weight: normal;
+    line-height: 20px;white-space: nowrap;
+  }
+  .dropdown .dropdown-menu i{
+    margin-right: 17px;width: 16px;display: inline-block;text-align: center;
+    line-height: 14px;font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;
+    transform: translate(0, 0);
+  }
+  .navbar-user .set-view-mode {
+    display: inline-block;color: #555555;text-decoration: none;
+}
+.navbar-user .set-view-mode {
+    position: relative;top: 11px;margin-right: 15px;
+}
+.pull-right {
+    float: right;
+}
+  .navbar-user{
+    /*position: relative; top:0;left: 173px;*/
+     margin-bottom: 0;z-index: 1010;
+    /*width: 360px;*/width: 100%;height: 45px;background: white;box-shadow: 0 1px 4px #eee;
+  }
+  .navbar-user a{
+      color: #555555;font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+  .navbar-user .login{
+    position: relative;;top:13px;float: right;padding: 0 2px;margin-right: 8px;
+  }
+  .container{
+    margin-bottom: 30px;width: auto;margin-right: auto; margin-left: auto;
+  }
+  .login-page{
+    padding: 125px 0 50px;text-align: center;
+  }
+  .login-page .logo img{
+    width: 252px;max-width: 100%;height: auto;vertical-align: middle; border: 0;
+  }
+  .login-page .title{
+    margin: 70px auto 50px; border-bottom: 1px solid #eeeeee;color: #b1b1b1;
+  }
+  h4{
+    font-size: 17.5px;font-family: inherit; font-weight: bold;line-height: 20px;text-rendering: optimizelegibility;
+  }
+  .login-page .title span{
+    position: relative;top: 10px; padding: 0 30px;background: white;
+  }
+  .login-page .title span .active{
+    color: #555555;text-decoration: none;
+  }
+  .login-page .title span a{
+    color: #b1b1b1;text-decoration: none;
+  }
+  .login-page .title b{
+    margin: 0 10px;
+  }
+  .login-page form{
+    width: 300px;padding-bottom: 15px;margin: 0 auto 25px;border-bottom: 1px solid #eeeeee;
+    display: block;
+  }
+  input{
+    width: 206px;display: inline-block;margin-bottom: 0;vertical-align: middle;margin-left: 0;
+    font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 10px;font-weight: normal;line-height: 20px;margin: 0;text-rendering: auto;
+    color: initial;letter-spacing: normal;word-spacing: normal;text-transform: none;text-indent: 0px;
+    text-shadow: none;text-align: start;
+}
+.form-horizontal .hide {
+    display: none;
+}
+.signin_error {
+    color: #d96f5d;
+}
+.login-page .input-prepend{
+ position: relative; width: 100%; margin-bottom: 13px;/*vertical-align: middle;*/font-size: 0;
+  white-space: nowrap;
+}
+.choose_phone {
+    position: relative;padding: 0px;border: 1px solid #cccccc;border-radius: 4px;
+}
+.login-page .input-prepend .add-on{
+  width: 34px;height: 32px;background: none;
+  font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 12px;font-weight: normal;line-height: 34px;margin-right: -1px;vertical-align: top;
+        display: inline-block;min-width: 16px;padding: 7px 5px;    text-align: center;
+    text-shadow: 0 1px 0 white;border: 1px solid #ccc;
+}
+.login-page .input-prepend input{
+  width: calc(100% - 44px);height: 48px;padding: 4px 12px;box-sizing: border-box;
+}
+.input-prepend input[class*="span"]{
+      display: inline-block;float: none;margin-left: 0;
+}
+input[type="text"]{
+      background-color: white;line-height: 20px;color: #555555;
+}
+.login-page .captcha{
+      text-align: left;font-size: 0;white-space: nowrap;
+}
+.login-page .submit-button{
+  width: 100%;
+}
+.ladda-button[data-color=green] {
+    color: white;border-color: #49be38;background: #49be38;
+}
+/*button[data-color=blue] {
+    color: white;border-color: #15a7f0;
+  }*/
+  .ladda-button{
+    position:relative;padding: 14px 18px;font-size: 13px;cursor: pointer;border-radius: 2px;
+    border: 1px solid transparent;
+  }
+  .ladda-button .ladda-label {
+    position: relative;z-index: 3;
+}
+  button{
+    font-family: Helvetica, Arial, "Hiragino Sans GB", sans-serif;font-weight: normal;
+    line-height: 20px;margin: 0;
+  }
+  .ladda-button .ladda-label {
+    position: relative;
+    z-index: 3;
+}
+.login-page .sign_up_msg{
+  margin: 10px 0px;padding: 0px;text-align: left;font-size: 10px;
+  line-height: 20px;color: #9d9d9d;font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.login-page .sign_up_msg a{
+  font-weight: bold;color: #555555;text-decoration: none;
+}
+.login-page .sign-in .control-group{
+  width: 100%;margin: 15px 0 0;font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 12px;font-weight: normal;line-height: 1.5; text-align: left;
+}
+.login-page .sign-in .icheckbox_minimal{
+  top: -2px;display: inline-block;background-image: url(../image/minimal@2x-0bfd9e6fa2a5a913f73265497b8b5aba.png);
+  background-size: 200px 20px;vertical-align: middle;
+    margin: 0;padding: 0;width: 18px;height: 18px;
+    background: url(../image/minimal-6553cab5f56acb97363067b296c92815.png) no-repeat;
+    border: none;cursor: pointer;
+}
+.icheckbox_minimal.checked {
+    background-position: -40px 0;
+}
+input[type="checkbox"]{
+      border: 1px solid #ccc;width: auto;margin: 4px 0 0;line-height: normal;cursor: pointer;
+}
+.login-page .sign-in .control-group a{
+  float: right;color: #555555;text-decoration: none;
+}
+.switch_sign_in_name{
+  color:#15a7f0;text-decoration: none;
+}
+.login-page .login-sns{
+      margin-left: 0;
+}
+.login-page .login-sns p{
+      margin-bottom: 15px;color: #999999;margin: 0 0 10px;
+}
+.login-page .login-sns ul{
+      padding: 0;margin: 0 0 10px 25px;
+}
+.login-page .login-sns li{
+  display: inline-block;
+}
+.login-page .login-sns li>a{
+      width: 44px; height: 44px;display: inline-block;border-radius: 50%;
+    line-height: 44px;font-size: 20px;background: #eeeeee;color: #555555;
+    text-decoration: none;
+}
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id="wrap">
+    	<div class="dropdown">
+    		<a class="dropdown-toggle">简</a>
+    		<ul class="dropdown-menu">
+    			<li>
+    				<a href="">
+    					<i class="fa fa-home icon iconfont">&#x3435; 首页</i>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="">
+    					<i class="fa fa-home icon iconfont">&#xe610; 专题</i>
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
+    </div>
+    <div class="navbar-user">
+    	<a class="login">
+    		<i class="iconfont">&#xe690;</i>
+    		注册
+    	</a>
+    	<a class="login">
+    		<i class="icon iconfont">&#xe600;</i>
+    		登陆
+    	</a>
+    	<a href="" class="set-view-mode pull-right daytime">
+    		<i class="icon iconfont">&#xe69f;</i>
+    	</a>
+    </div>
+   <div class="container">
+   		<div class="login-page">
+   			<div class="logo">
+   				<img src="../image/img_logo-25ff4bee2e56411470b83c636a7a0dad.png"/>
+   			</div>
+   			<h4 class="title">
+   				<span>
+   					<a href="" class="active" data-pjax="true">登录</a>
+   					<b>.</b>
+   					<a href="" class data-pjax="true">注册</a>
+   				</span>
+   			</h4>
+   			<div id="pjax-container">
+   				<div class="sign-up" data-js-module="sign-up-form">
+   					<form class="form-horizontal" data-js-module="sign-in" action="" accept-charset="UTF-8" method="post">
+   						<input name="utf8" type="hidden" value="√">
+   						<input name="authenticity_token" type="hidden">
+   						<p id="signup_errors" class="signin_error hide"></p>
+   						<div class="input-prepend">
+   							<span class="add-on"><i class="iconfont">&#xe623;</i></span>
+							<input type="text" name="email" id="sign_up_email" class="span2" placeholder="你的邮件地址">
+   						</div>
+   						<div class="input-prepend">
+   							<span class="add-on"><i class="iconfont">&#xe608;</i></span>
+							<input type="text" name="nickname" id="nickname" class="span2" placeholder="选一个昵称">
+   						</div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="iconfont">&#xe736;</i></span>
+              <input type="password" name="password" id="sign_up_password" class="span2" placeholder="输入密码">
+              </div>
+   						<div class="captcha" data-captcha-type="geetest" data-js-module="captcha">
+   							
+   						</div>
+   						<button class="ladda-button submit-button" name="button" type="submit" data-color="green">
+   							<span class="ladda-label">注册</span>
+   						</button>
+   						<p class="sign_up_msg">点击 “注册” 或下方社交登录按钮，即表示您同意并愿意遵守简书 
+                  <a href="">用户协议</a>和<a href="">隐私政策</a>
+              </p>
+   					</form>
+   				</div>
+   			</div>
+   			<div class="login-sns">
+   				<p>您还可以通过以下方式直接登录</p>
+   				<ul class="login-sns">
+              <li class="weibo"><a href=""><i class="iconfont">&#xe60a;</i></a></li> 
+              <li class="qq"><a href=""><i class="iconfont">&#xe604;</i></a></li>
+              <li class="douban"><a href=""><i class="iconfont">&#xe67e;</i></a></li>  
+              <li class="goole"><a href=""><i class="iconfont">&#xe602;</i></a></li>
+              <li class="wechat"><a href=""><i class="iconfont">&#xe65a;</i></a></li>   
+          </ul>
+   			</div>
+   		</div>
+   </div>
+    <footer>
+    	
+    </footer>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #tab ul li {
+            display: inline;
+            /*background: lightcoral;*/
+        }
+
+        #tab ul li :active {
+            background: yellow;
+        }
+
+        #content {
+            background: lightgrey;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+
+    <script>
+        /* 面向过程 */
+
+        //        var li = null, contentDiv = null;//尽量避免设置全局变量
+        //
+        //        window.onload = function(){
+        //            var oUl = document.getElementById('tab-mark');
+        //            li = document.getElementsByTagName('li');
+        //            contentDiv = document.getElementById('content');
+        //
+        //            for (var i = 0; i < li.length; i++)
+        //            {
+        //                li[i].index = i;
+        //                li[i].onclick = clickFunction;
+        //            }
+        //        };
+        //
+        //        function clickFunction(){
+        //            for (var j = 0; j < li.length; j++){
+        //                li[j].style.background = 'none';
+        //            }
+        //
+        //            this.style.background = 'yellow';
+        //            contentDiv.innerHTML = this.index;
+        //        }
+
+        /* 面向对象 */
+        window.onload = function () {
+            new TabSwitch();
+        };
+
+        function TabSwitch() {
+            var oUl = document.getElementById('tab-mark');
+            this.li = document.getElementsByTagName('li');
+            this.contentDiv = document.getElementById('content');
+            var _this = this;
+
+            for (var i = 0; i < this.li.length; i++) {
+                this.li[i].index = i;
+                this.li[i].onclick = function(){
+                    _this.clickFunction(this)
+                };
+            }
+        }
+
+        TabSwitch.prototype.clickFunction = function (ali) {
+            for (var j = 0; j < this.li.length; j++) {
+                this.li[j].style.background = 'none';
+            }
+
+            ali.style.background = 'yellow';
+            this.contentDiv.innerHTML = ali.index;
+        }
+    </script>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li> 选项</li>
+        <li> 选项</li>
+        <li> 选项</li>
+        <li> 选项</li>
+    </ul>
+</div>
+<div id="content">
+
+</div>
+
+</body>
+
+</html>

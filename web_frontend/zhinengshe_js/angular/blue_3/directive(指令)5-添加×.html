@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module("test", []);
+
+app.directive('myclose', function (){
+	var json={
+		restrict: 'A',								//约束-指令能用在哪儿
+		template: '<a href="javascript:;">×</a>'
+	};
+	
+	return json;
+});
+</script>
+</head>
+
+<body>
+    <ul>
+    	<li myclose>rtertret</li>
+    	<li myclose>dfsafd</li>
+    	<li myclose>4565rty</li>
+    	<li>gfhfdgh</li>
+    	<li>dfghdfghgf</li>
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

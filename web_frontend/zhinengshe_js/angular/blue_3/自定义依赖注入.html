@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.factory('test', function (){
+	return {
+		a: 12,
+		fn: function (num1, num2){
+			return num1+num2;
+		}
+	};
+});
+
+app.controller('cont1', function ($scope, test){
+	alert(test.fn(12, 55));
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

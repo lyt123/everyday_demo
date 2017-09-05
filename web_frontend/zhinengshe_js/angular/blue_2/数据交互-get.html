@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	//a.php
+	//a=xxx&b=xxx
+	$http.get('a.php', {params: {a: 12, b: 5}}).success(function (result){
+		alert('成功了'+result);
+	}).error(function (){
+		alert('失败了');
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	
+</body>
+</html>
+
+
+
+
+
+
+

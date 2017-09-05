@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http, $interval){
+	$scope.a=0;
+	
+	/*setInterval(function (){
+		$scope.a++;
+		$scope.$apply();
+		//console.log($scope.a);
+	}, 50);*/
+	
+	var timer=$interval(function (){
+		$scope.a++;
+		
+		if($scope.a==100){
+			$interval.cancel(timer);
+		}
+	}, 50);
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	{{a}}
+</body>
+</html>
+
+
+
+
+
+
+

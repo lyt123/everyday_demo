@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.str='';
+	$scope.arr=['app', 'apple', 'beer', 'now', 'new', 'zoom', 'z-index'];
+});
+
+app.directive('dropdownlist', function (){
+	return {
+		restrict: 'E',
+		template:
+		'<input type="text" ng-model="str" />\
+		<ul>\
+			<li ng-repeat="v in arr" ng-show="v.indexOf(str)!=-1">{{v}}</li>\
+		</ul>'
+	};
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+<dropdownlist></dropdownlist>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

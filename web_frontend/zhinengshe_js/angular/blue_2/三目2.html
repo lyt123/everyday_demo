@@ -1,0 +1,14 @@
+<!doctype html>
+<html ng-app="">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+<script src="js/angular.js"></script>
+</head>
+
+<body ng-init="arr=[12, 5, 88, 93, 39];">
+    <div ng-repeat="v in arr" style="{{v%2==0?'background:yellow;':''}}">{{v}}</div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <script>
+        function dd($param) {
+            console.log($param);
+        }
+
+        var json = {a: 12, b: 5, c: 'abc'};
+
+        var arr = [12, 5, 7];
+        /*
+         dd(json['a']);
+         dd(arr[0]);
+         */
+
+        console.log(json.length);
+        console.log(arr.length);
+
+        //循环
+
+        for (var i = 0; i < arr.length; i++) {
+            console.log('第' + i + '个东西：' + arr[i]);
+        }
+
+        for (var i in arr) {
+            console.log('第' + i + '个东西：' + arr[i]);
+        }
+
+        for (var i in json) {
+            console.log('第' + i + '个东西：' + json[i]);
+        }
+
+        json.b++;
+
+        console.log(json.b);
+
+        //NaN和NaN不相等
+        var a = parseInt('abc');
+        var b = parseInt('def');
+
+        console.log(isNaN(a));
+        console.log(a == b);
+
+        //真：true、非零数字、非空字符串、非空对象
+        //假：false、数字零、空字符串、空对象、undefined
+        if (' ')
+            console.log('empty string is true');
+
+        //子函数可以使用父函数的局部变量
+
+        function aaa()		//父函数
+        {
+            var a = 12;
+
+            function bbb()	//子函数
+            {
+                console.log(a);
+            }
+
+            bbb();
+        }
+
+        aaa();
+
+        var c;		//全局变量：在任何地方都能用
+
+        function aaa() {
+            c = 12;
+        }
+
+        function bbb() {
+            console.log(c);
+        }
+
+        aaa();
+        bbb();
+
+        //数据类型
+        var a = 12;
+        console.log(typeof a);	//number
+
+        a = 'asdfasd';
+        console.log(typeof a);	//string
+
+        a = true;
+        console.log(typeof a);	//boolean
+
+        a = function () {
+            console.log('abca');
+        };
+        console.log(typeof a);	//function
+
+        a = document;
+        console.log(typeof a);	//object
+
+        var d;
+        console.log(typeof d);	//undefined  1.真的没定义 2.虽然定义，没有给东西
+
+
+        var a = '12';
+
+        console.log(parseInt(a) + 1);
+
+
+        var a = '12px34';
+
+        dd(parseInt(a));
+
+        var a = 'abc';
+
+        dd(parseInt(a));
+
+        dd(7 / 2);
+
+        //隐式类型转换
+        var a = 5;
+        var b = '5';
+
+        dd(a == b);	//true		先转换类型，然后比较
+        //dd(a===b);	//false		不转换类型，直接比
+
+        var a = '12';
+        var b = '5';
+
+        dd(a + b);		//1.字符串连接		2.数字相加
+        dd(a - b);		//1.数字相减
+
+        /* ----------------------- eloquent js reading ------------------------- */
+        dd('eloquent js reading');
+        //闭包
+        function f1(a) {
+            return function f2(b) {
+                return a * b;
+            }
+        }
+
+        f3 = f1(2);
+        dd(f3(5));
+
+        //数组的method
+        var arr = [3, 63, 64];
+        //arr.push(4);//往数组最后添加元素
+        //arr.pop();//除去数组的最后一个元素
+        arr.unshift(5);//在第一位添加元素
+        arr.shift();//除去数组的第一个元素
+        dd(arr.join('-'));
+
+        //object
+        var obj = {
+            left: 0,
+            right: 3
+        };
+        delete obj.left;//delete
+        dd(obj.left);
+        dd("left" in obj);
+        dd("right" in obj);//"in" return true/false;
+        dd(obj.right);
+
+        //string number boolean are not objects,but string have some properties built-in;
+        dd("sfdjakjajfsdl".slice(4, 8));//->akja
+        dd("afsdjlkfsd".indexOf('j'));//->4
+        dd("   okey  \n".trim());//->okey,清楚字符串前后的空位
+
+        //注意：Math.floor();的math首字母是大写的，参数的个数可以用arguments.length来算，step==null的妙用，
+        function range(start, end, step) {
+            if (step == null) step = 1;
+            var array = [];
+
+            if (step > 0) {
+                for (var i = start; i <= end; i += step)
+                    array.push(i);
+            } else {
+                for (var i = start; i >= end; i += step)
+                    array.push(i);
+            }
+            return array;
+        }
+
+        function sum(array) {
+            var total = 0;
+            for (var i = 0; i < array.length; i++)
+                total += array[i];
+            return total;
+        }
+
+        console.log(range(1, 10));
+        // → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        console.log(range(5, 2, -1));
+        // → [5, 4, 3, 2]
+        console.log(sum(range(1, 10)));
+        // → 55
+
+        //reverse array
+        function rev(arr)//产生一个对调位置的数组
+        {
+            var revArr = [];
+            //revArr.unshift(arr[i]);可以用于替代下面的for循环
+            for (var i = 0, j = arr.length - 1; i < arr.length; i++, j--) {
+                revArr[j] = arr[i];
+            }
+            return revArr;
+        }
+
+        function revInplace(arr)//将数组在它本身上对调
+        {
+            var revInArr = [];
+            var temp;
+            var len = arr.length;
+            for (var i = 0; i < Math.floor(len / 2); i++) {
+                temp = arr[i];
+                arr[i] = arr[len - i - 1];
+                arr[len - i - 1] = temp;
+            }
+            return arr;
+        }
+        var arr = [2, 3, 8];
+
+        dd(rev(arr));
+        dd(revInplace(arr));
+
+        function arrayToList(array) {
+            var list = null;
+            for (var i = array.length - 1; i >= 0; i--)
+                list = {value: array[i], rest: list};
+            return list;
+        }
+        var array = [1, 54, 65];
+        console.log(arrayToList(array));
+
+        //regexp
+        dd('regexp');
+        var patt1 = new RegExp('e');
+        dd(patt1.exec("However lek sfldj"));
+
+        var patt1 = new RegExp('e', 'g');
+        do {
+            result = patt1.exec("The best things in life are free");
+            dd(result);
+        } while (result != null);
+        dd('end while');
+        var patt1 = new RegExp('e', 'g');
+        for (var i = 0; i < 2; i++) {
+            result = patt1.exec("The best things in life are free");
+            dd(result);
+        }
+
+        var patt1 = new RegExp('e');
+        dd(patt1.test("sdlj jewj l;jdf"));
+        patt1.compile("d");//将patt1修改为d
+        //
+        var str = "That's hot!";
+        var patt1 = /h.t/g;
+        dd(str.match(patt1));
+        //
+        var str = "7@";//"@"有一个逗号显示，而"7@"，即两个以上字符时结果中没有逗号显示
+        var patt1 = /\B/g;
+        dd(str.match(patt1));
+        //
+        var str = " 7@";
+        var patt1 = /\B/g;
+        dd(str.match(patt1));
+        //
+        var str = " fg gd@";
+        dd(str.match(/\B/g));
+        //
+        var str = "Is this all there is?";
+        var patt1 = /[^a-h]/g;
+        dd(str.match(patt1));
+        //
+        var str = "The rain in Spain stays mainly in the plain";
+        var patt1 = new RegExp("ain", "g");
+        patt1.test(str);
+        dd("Match found. index now at: " + patt1.lastIndex);
+
+        dd(8/3);//小数
+
+        if(1){
+            test_block_scope = 'aa';
+        }
+        dd(test_block_scope);
+
+    </script>
+</head>
+
+<body>
+</body>
+</html>

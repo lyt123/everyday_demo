@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+            position: absolute;
+        }
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: lightgreen;
+            position: absolute;
+        }
+    </style>
+    <script>
+        /* 面向过程 */
+        //        var oDiv, disX, disY;
+        //        window.onload = function () {
+        //            oDiv = document.getElementById('div1');
+        //
+        //            oDiv.onmousedown = FnDown;
+        //        };
+        //
+        //        function FnDown(ev) {
+        //
+        //            var oEvent = ev || event;
+        //            disX = oEvent.clientX - oDiv.offsetLeft;
+        //            disY = oEvent.clientY - oDiv.offsetTop;
+        //
+        //            document.onmousemove = fnMove;
+        //
+        //            document.onmouseup = fnUp;
+        //        }
+        //
+        //        function fnMove(ev) {
+        //            var oEvent = event || ev;
+        //
+        //            oDiv.style.left = oEvent.clientX - disX + 'px';
+        //            oDiv.style.top = oEvent.clientY - disY + 'px';
+        //        }
+        //
+        //        function fnUp() {
+        //            document.onmousemove = null;
+        //            document.onmouseup = null;
+        //        }
+
+        /* 面向对象 */
+        window.onload = function () {
+            new Drag('div1');
+            new LimitDrag('div2');
+        };
+
+        //普通拖拽
+        function Drag(id) {
+            var _this = this;
+            this.oDiv = document.getElementById(id);
+
+            this.oDiv.onmousedown = function (ev) {
+                _this.fnDown(ev);
+                return false;//防止文字选中
+            };
+        }
+
+        Drag.prototype.fnDown = function (ev) {
+            var _this = this;
+            var oEvent = ev || event;
+            this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+            this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+            document.onmousemove = function (ev) {
+                _this.fnMove(ev);
+            };
+
+            document.onmouseup = function () {
+                _this.fnUp();
+            };
+        };
+
+        Drag.prototype.fnMove = function (ev) {
+            var oEvent = event || ev;
+
+            this.oDiv.style.left = oEvent.clientX - this.disX + 'px';
+            this.oDiv.style.top = oEvent.clientY - this.disY + 'px';
+        };
+
+        Drag.prototype.fnUp = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+        //限制范围的拖拽
+        function LimitDrag(id){
+            Drag.call(this, id);
+        }
+
+        for (var i in Drag.prototype) {
+            LimitDrag.prototype[i] = Drag.prototype[i];
+        }
+
+        LimitDrag.prototype.fnMove = function (ev) {
+            var oEvent = event || ev;
+
+            l = oEvent.clientX - this.disX;
+            t = oEvent.clientY - this.disY;
+
+            //限制范围
+            if(l < 0) {
+                l = 0;
+            }else if (l > document.documentElement.clientWidth - this.oDiv.offsetWidth) {
+                l = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+            }
+
+            this.oDiv.style.left = l + 'px';
+            this.oDiv.style.top = t + 'px';
+        };
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<div id="div1">
+普通拖拽
+</div>
+<div id="div2">
+限制范围
+</div>
+</body>
+</html>

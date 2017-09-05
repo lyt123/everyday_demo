@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module("test", []);
+
+app.directive('abc', function (){
+	var json={
+		restrict: 'C',					//约束-指令能用在哪儿
+		template: '<span>987654321</span>'	//模板-
+	};
+	
+	return json;
+});
+</script>
+</head>
+
+<body>
+	<abc>aaa</abc>
+	<div abc="">bbb</div>
+    <span class="abc"></span>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

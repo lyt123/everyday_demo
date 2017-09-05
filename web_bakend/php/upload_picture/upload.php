@@ -2,20 +2,20 @@
 /* upload single picture */
 var_dump($_FILES);
 
-if(!empty($_FILES['picture']) && is_uploaded_file($_FILES['picture']['tmp_name'])) {
-    $uploaded_file = $_FILES['picture']['tmp_name'];
-    $move_to_file = $_SERVER['DOCUMENT_ROOT'].'/everyday_demo/upload_picture/picture/'.$_FILES['picture']['name'];
-    var_dump('haha');
-    var_dump($uploaded_file);
-    if(move_uploaded_file($uploaded_file, iconv("utf-8", "gb2312", $move_to_file))) {
-        /*
-         * iconv() to enable file name to be chinese
-         * move_uploaded_file() to move uploaded file from 'E:\wamp64\tmp\phpDC53.tmp'
-         * to 'E:/wamp64/www1/everyday_demo/upload_picture/picture/1.jpg'
-        */
-        var_dump('nice');
-    }
-}
+//if(!empty($_FILES['picture']) && is_uploaded_file($_FILES['picture']['tmp_name'])) {
+//    $uploaded_file = $_FILES['picture']['tmp_name'];
+//    $move_to_file = $_SERVER['DOCUMENT_ROOT'].'/everyday_demo/upload_picture/picture/'.$_FILES['picture']['name'];
+//    var_dump('haha');
+//    var_dump($uploaded_file);
+//    if(move_uploaded_file($uploaded_file, iconv("utf-8", "gb2312", $move_to_file))) {
+//        /*
+//         * iconv() to enable file name to be chinese
+//         * move_uploaded_file() to move uploaded file from 'E:\wamp64\tmp\phpDC53.tmp'
+//         * to 'E:/wamp64/www1/everyday_demo/upload_picture/picture/1.jpg'
+//        */
+//        var_dump('nice');
+//    }
+//}
 
 /* upload multiple photo */
 //if(!empty($_FILES['photo'])) {

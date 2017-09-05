@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 input {background:#CCC;}
+#div1 input.active {background:yellow;}
+#div1 div {width:300px; height:300px; background:#CCC; border:1px solid black;}
+</style>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.now=0;
+	
+	$scope.arr=[
+		{name: '电视', newsList: [
+			{title: '从I到W 习近平的全球视野', href: 'http://news.163.com/16/0909/14/C0HG3OMP00014PRF.html'},
+			{title: '李克强:推动东亚合作向前', href: 'http://news.163.com/16/0909/09/C0GU7KCH00014PRF.html'},
+			{title: '李小鹏履新交通部后公开露面', href: 'http://news.163.com/16/0909/10/C0H0N6S900014SEH.html'}
+		]},
+		{name: '音乐', newsList: [
+			{title: 'aaa从I到W 习近平的全球视野', href: 'http://news.163.com/16/0909/14/C0HG3OMP00014PRF.html'},
+			{title: '李克强:推动东亚合作向前', href: 'http://news.163.com/16/0909/09/C0GU7KCH00014PRF.html'},
+			{title: '李小鹏履新交通部后公开露面', href: 'http://news.163.com/16/0909/10/C0H0N6S900014SEH.html'}
+		]},
+		{name: '体育', newsList: [
+			{title: 'bbb从I到W 习近平的全球视野', href: 'http://news.163.com/16/0909/14/C0HG3OMP00014PRF.html'},
+			{title: '李克强:推动东亚合作向前', href: 'http://news.163.com/16/0909/09/C0GU7KCH00014PRF.html'},
+			{title: '李小鹏履新交通部后公开露面', href: 'http://news.163.com/16/0909/10/C0H0N6S900014SEH.html'}
+		]}
+	];
+	
+	$scope.fn=function (n){
+		$scope.now=n;
+	};
+});
+</script>
+</head>
+
+<body>
+<div id="div1" ng-controller="cont1">
+    <input ng-repeat="json in arr" type="button" value="{{json.name}}" class="{{now==$index?'active':''}}" ng-click="fn($index)" />
+    <div ng-repeat="json in arr" ng-show="now==$index">
+    	<ul>
+        	<li ng-repeat="news in json.newsList"><a href="{{news.href}}">{{news.title}}</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

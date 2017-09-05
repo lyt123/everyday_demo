@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular.js"></script>
+    <script>
+        var $scope = {};
+        var arr;
+        function setValue(name, val) {
+            $scope[name] = val;
+
+            for (var i = 0; i < arr.length; i++) {
+                arr[i].value = val;
+            }
+        }
+
+        window.onload = function () {
+            $scope.a = '';
+            arr = document.getElementsByTagName('input');
+
+
+            //更深一层
+            /*
+            var eles = document.getElementsByTagName('*');
+
+            for (var i = 0; i < eles.length; i++) {
+                if (eles[i].ngMOdel != null) {
+                    eles[i].oninput = setValue;
+                }
+            }*/
+        };
+    </script>
+</head>
+<body>
+<input type="text" oninput="setValue('a', this.value);">
+<input type="text" oninput="setValue('a', this.value);">
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test_module">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script>
+    var testMod = angular.module('test_module', []);
+
+    //基本的获取数据并使用
+    testMod.controller('testController', function ($scope, $http) {
+
+        $scope.a = 'test';
+        $scope.img_data = [];
+
+        $http.get('http://localhost/guoya_course/admin/Course/getCourseIntroductionPicturesLink?page=1&limit=1').success(function (result) {
+            $scope.img_data = result.data.datalist;
+            $scope.img_sum = result.data.sum;
+            console.log(result);
+        }).error(function () {
+            console.log('错了');
+        });
+    });
+
+    //在网页中使用html
+    testMod.controller('htmlController', function($scope, $http, $sce) {
+        $scope.data = $sce.trustAsHtml('<h1>kdks</h1>');
+
+        $scope.data2 = '<h1>kddddks</h1>';
+
+    });
+
+    //封装成filter
+    testMod.filter('showAsHtml', function ($sce) {
+        return function (input){
+            return $sce.trustAsHtml(input);
+        }
+    });
+
+</script>
+<body>
+<div id="wrapper">
+
+    <!--基本的获取数据并使用-->
+    <div class="one_photo" ng-controller="testController">
+        {{img_sum}}
+        <div id="to_repeat" ng-repeat="item in img_data">
+            <img
+                    src="http://callartedu.com/guoya_course/{{item.path}}"
+                    width="200px"
+                    height="200px" alt=""><a href="javascript:void(0);" onclick="linkUrlFn('{{path}}')" data-toggle="modal"
+                                             data-target="#changeMess"><span>复制链接{{item.id}}</span></a>
+        </div>
+    </div>
+
+    <!--在网页中使用html-->
+    <div ng-controller="htmlController">
+        <div ng-bind-html="data">
+            <!--{{data}}-->
+        </div>
+        <div ng-bind-html="data2|showAsHtml">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.factory('dataCom', function (){
+	return {
+		a: 0
+	};
+});
+
+app.controller('cont1', function ($scope, dataCom){
+	dataCom.a=12;
+});
+
+app.controller('cont2', function ($scope, dataCom){
+	alert(dataCom.a);
+});
+</script>
+</head>
+
+<body>
+<div  ng-controller="cont1"></div>
+<div ng-controller="cont2"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

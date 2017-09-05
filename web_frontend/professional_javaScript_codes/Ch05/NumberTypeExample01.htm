@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Type Example</title>
+    <script type="text/javascript">
+        var numberObject = new Number(10);
+        var numberValue = 99;
+        
+        //toString() using a radix
+        console.log(numberObject.toString());       //"10"
+        console.log(numberObject.toString(2));      //"1010"
+        console.log(numberObject.toString(8));      //"12"
+        console.log(numberObject.toString(10));     //"10"
+        console.log(numberObject.toString(16));     //"a"
+        
+        //toFixed()
+        console.log(numberObject.toFixed(2));    //outputs "10.00"
+
+        numberObject = new Number(99);
+        console.log(numberObject.toPrecision(1));    //"1e+2"
+        console.log(numberObject.toPrecision(2));    //"99"
+        console.log(numberObject.toPrecision(3));    //"99.0"
+           
+        console.log(typeof numberObject);   //object
+        console.log(typeof numberValue);    //number
+        console.log(numberObject instanceof Number);  //true
+        console.log(numberValue instanceof Number);   //false
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

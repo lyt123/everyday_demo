@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	$scope.str='';
+	$scope.arr=[];
+	
+	$scope.$watch('str', function (){
+		$http.jsonp('http://suggestion.baidu.com/su', {params: {
+			wd: $scope.str,
+			cb: 'JSON_CALLBACK'
+		}}).success(function (json){
+			//alert(json.s);
+			$scope.arr=json.s;
+		}).error(function (){
+			alert('失败了');
+		});
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<input type="text" ng-model="str" />
+    <ul>
+    	<li ng-repeat="s in arr">{{s}}</li>
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+

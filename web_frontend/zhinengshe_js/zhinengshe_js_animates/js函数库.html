@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS库</title>
+<script>
+/*
+//var aLi=getByClass(oUl, 'box');举例--把oUl里className为box的元素取出来
+function getByClass(oParent, sClass)
+{
+	var aResult=[];
+	var aEle=oParent.getElementsByTagName('*');
+	
+	for(var i=0;i<aEle.length;i++)
+	{
+		if(aEle[i].className==sClass)
+		{
+			aResult.push(aEle[i]);
+		}
+	}
+	
+	return aResult;
+};
+*/
+/*
+//获取非行间样式
+function getStyle(obj, name)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[name];	//IE
+	}	
+	else
+	{
+		return getComputedStyle(obj, false)[name];//Chrome FF
+	}
+};
+*/
+/*
+//任意值框架
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div {width:200px; height:200px; margin:20px; float:left; background:yellow; border:10px solid black; filter:alpha(opacity:30); opacity:0.3;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.onmouseover=function ()
+	{
+		startMove(this, 'opacity', 100);
+	};
+	oDiv.onmouseout=function ()
+	{
+		startMove(this, 'opacity', 30);
+	};
+};
+
+function getStyle(obj, name)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[name];
+	}
+	else
+	{
+		return getComputedStyle(obj, false)[name];
+	}
+}
+
+function startMove(obj, attr, iTarget)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var cur=0;
+		
+		if(attr=='opacity')
+		{
+			cur=parseFloat(getStyle(obj, attr))*100;
+		}
+		else
+		{
+			cur=parseInt(getStyle(obj, attr));
+		}
+		
+		var speed=(iTarget-cur)/6;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		
+		if(cur==iTarget)
+		{
+			clearInterval(obj.timer);
+		}
+		else
+		{
+			if(attr=='opacity')
+			{
+				obj.style.filter='alpha(opcity:'+(cur+speed)+')';
+				obj.style.opacity=(cur+speed)/100;
+			}
+			else
+			{
+				obj.style[attr]=cur+speed+'px';
+			}
+		}
+	}, 30);
+}
+
+/*
+//运动完美框架，当然对于css3和HTML5有更强大的框架
+function startMove(obj, json, fnEnd)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var bStop=true;		//假设：所有值都已经到了
+		
+		for(var attr in json)
+		{
+			var cur=0;
+			
+			if(attr=='opacity')
+			{
+				cur=Math.round(parseFloat(getStyle(obj, attr))*100);
+			}
+			else
+			{
+				cur=parseInt(getStyle(obj, attr));
+			}
+			
+			var speed=(json[attr]-cur)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			
+			if(cur!=json[attr])
+				bStop=false;
+			
+			if(attr=='opacity')
+			{
+				obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+				obj.style.opacity=(cur+speed)/100;
+			}
+			else
+			{
+				obj.style[attr]=cur+speed+'px';
+			}
+		}
+		
+		if(bStop)
+		{
+			clearInterval(obj.timer);
+						
+			if(fnEnd)fnEnd();
+		}
+	}, 30);
+}
+*/
+/*
+//获取scrollTop和scrollLeft
+function getPos(ev)
+{
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+	var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+	
+	return {x: ev.clientX+scrollLeft, y: ev.clientY+scrollTop};	
+};
+*/
+
+/*
+//自定义右键菜单
+document.oncontextmenu=function (ev)
+{
+	var oEvent=ev||event;
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.style.display='block';
+	oDiv.style.left=oEvent.clientX+'px';
+	oDiv.style.top=oEvent.clientY+'px';
+	
+	return false;//return false用于组织默认右键菜单
+};
+
+document.onclick=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.style.display='none';
+};
+
+*/
+/*
+//绑定事件
+function myAddEvent(obj, ev, fn)
+{
+	if(obj.attachEvent)
+	{
+		obj.attachEvent('on'+ev, fn);
+	}
+	else
+	{
+		obj.addEventListener(ev, fn, false);//第三个参数用处不大，而第一个参数是不用加on的
+	}
+}
+
+window.onload=function ()
+{
+	var oBtn=document.getElementById('btn1');
+	
+	myAddEvent(oBtn, 'click', function (){
+		alert('a');
+	});
+	
+	myAddEvent(oBtn, 'click', function (){
+		alert('b');
+	});
+};
+
+*/
+
+/*
+//兼容的拖拽
+
+*/
+
+/*
+//ajax
+function ajax(url, fnSucc, fnFaild)
+{
+	//1.创建Ajax对象
+	if(window.XMLHttpRequest)
+	{
+		var oAjax=new XMLHttpRequest();
+	}
+	else
+	{
+		var oAjax=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	//2.连接服务器
+	//open(方法, 文件名, 异步传输)
+	oAjax.open('GET', url, true);
+	
+	//3.发送请求
+	oAjax.send();
+	
+	//4.接收返回
+	oAjax.onreadystatechange=function ()
+	{
+		//oAjax.readyState	//浏览器和服务器，进行到哪一步了
+		if(oAjax.readyState==4)	//读取完成
+		{
+			if(oAjax.status==200)	//成功
+			{
+				fnSucc(oAjax.responseText);
+			}
+			else
+			{
+				if(fnFaild)
+				{
+					fnFaild(oAjax.status);
+				}
+				//alert('失败:'+oAjax.status);
+			}
+		}
+	};
+}
+*/
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

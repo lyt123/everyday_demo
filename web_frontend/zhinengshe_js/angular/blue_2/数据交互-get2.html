@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $http){
+	$scope.num1=0;
+	$scope.num2=0;
+	$scope.result=0;
+	
+	$scope.$watch('num1', function (){
+		$http.get('a.php', {params: {a: $scope.num1, b: $scope.num2}}).success(function (result){
+			$scope.result=result;
+		}).error(function (){
+			alert('失败了');
+		});
+	});
+	$scope.$watch('num2', function (){
+		$http.get('a.php', {params: {a: $scope.num1, b: $scope.num2}}).success(function (result){
+			$scope.result=result;
+		}).error(function (){
+			alert('失败了');
+		});
+	});
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<input type="text" ng-model="num1" />+<input type="text" ng-model="num2" />={{result}}
+</body>
+</html>
+
+
+
+
+
+
+

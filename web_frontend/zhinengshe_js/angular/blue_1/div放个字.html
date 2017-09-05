@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function (){
+	var oTxt1=document.getElementById('txt1');
+	var oDiv=document.getElementById('div1');
+	
+	oTxt1.oninput=function (){
+		oDiv.innerHTML=oTxt1.value;
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="text" id="txt1" />
+<div id="div1"></div>
+</body>
+</html>

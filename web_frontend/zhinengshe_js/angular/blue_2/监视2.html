@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.arr=[12, 5, 8];
+	
+	//$watch(谁, 干什么, 深度监视)
+	/*
+	深度监视——内容
+	*/
+	$scope.$watch('arr', function (){
+		alert('变了');
+	}, true);
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<input type="button" value="按钮" ng-click="arr.push(99)" />
+    {{arr}}
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.fn=function (n){
+		$scope.a=n;
+	};
+});
+</script>
+</head>
+
+<body ng-init="arr=[12,5,8];a=0;" ng-controller="cont1">
+	{{a}}
+    <!--<input type="button" value="按钮" ng-click="a=12" />-->
+    <input ng-repeat="v in arr" type="button" value="按钮" ng-click="fn(12)" />
+</body>
+</html>
+
+
+
+
+
+
+

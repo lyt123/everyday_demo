@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width:100px; height:200px; background:#F00; position:absolute;}
+</style>
+<script>
+window.onload=function()
+{
+    var oDiv=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+    var oDiv4=document.getElementById('div4');
+    var oDiv5=document.getElementById('div5');
+
+	oDiv.onmousedown=function(ev)
+	{
+		var oEvent=event || ev;	
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+        oDiv2.innerHTML = oEvent.clientX;
+        oDiv3.innerHTML = oEvent.clientY;
+        oDiv4.innerHTML = oDiv.offsetLeft;
+        oDiv5.innerHTML = oDiv.offsetTop;
+
+		document.onmousemove=function(ev)
+		{
+			var oEvent=event || ev;
+			var l=oEvent.clientX-disX;	
+			
+			if(l<0)
+			{
+				l=0;	
+			}
+			else if(l>document.clientWidth-oDiv.offsetWidth)
+			{
+				l=document.clientWidth-oDiv.offsetWidth;
+			}
+			else 
+			{
+				oDiv.style.left=l+'px';
+			}
+			oDiv.style.top=oEvent.clientY-disY+'px';
+				
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+		
+		return false;
+	};	
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4"></div>
+<div id="div5"></div>
+</body>
+</html>

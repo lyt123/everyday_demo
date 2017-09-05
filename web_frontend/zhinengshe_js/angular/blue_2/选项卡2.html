@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 input {background:#CCC;}
+#div1 input.active {background:yellow;}
+#div1 div {width:300px; height:300px; background:#CCC; border:1px solid black;}
+</style>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.now=0;
+	
+	$scope.arr=[
+		{name: '电视', content: '大师的飞洒发'},
+		{name: '音乐', content: 'teryrtyrt'},
+		{name: '体育', content: '56756867867'}
+	];
+});
+</script>
+</head>
+
+<body>
+<div id="div1" ng-controller="cont1">
+    <input type="button" value="电视" class="{{now==0?'active':''}}" ng-click="now=0;" />
+    <input type="button" value="音乐" class="{{now==1?'active':''}}" ng-click="now=1;" />
+    <input type="button" value="体育" class="{{now==2?'active':''}}" ng-click="now=2;" />
+    <div ng-show="now==0">的水电费是大法官</div>
+    <div ng-show="now==1">teryrtyrt</div>
+    <div ng-show="now==2">56756867867</div>
+</div>
+</body>
+</html>

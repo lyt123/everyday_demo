@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.a=12;
+});
+app.controller('cont2', function ($scope){
+	alert($scope.a);
+});
+</script>
+</head>
+
+<body>
+<div  ng-controller="cont1">
+	<div  ng-controller="cont2"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

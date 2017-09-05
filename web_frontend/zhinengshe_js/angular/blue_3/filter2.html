@@ -1,0 +1,19 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module("test", []);
+
+app.controller('cont1', function ($scope){
+	$scope.time=1473576040193;
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	现在的时间是：{{time|date:"yyyy年MM月dd日 HH:mm:ss"}}
+</body>
+</html>

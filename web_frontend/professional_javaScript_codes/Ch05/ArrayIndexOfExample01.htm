@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array indexOf() Example</title>
+</head>
+<body>
+    <script>
+        var numbers = [1,2,3,4,5,4,3,2,1];
+        
+        console.log(numbers.indexOf(4));        //3
+        console.log(numbers.lastIndexOf(4));    //5
+        
+        console.log(numbers.indexOf(4, 4));     //5
+        console.log(numbers.lastIndexOf(4, 4)); //3
+
+        var person = { name: "Nicholas" };
+        var people = [{ name: "Nicholas" }];
+        var morePeople = [person];
+        
+        console.log(people.indexOf(person));     //-1
+        console.log(morePeople.indexOf(person)); //0
+
+        console.log(morePeople == people);       //false
+
+        var obj1 = [{ name: "Nicholas" }];
+        var obj2 = [{ name: "Nicholas" }];
+        console.log(obj1 == obj2);               //false
+
+        //得出结论：两个对象虽然内容一样，但存放该内容的地址是不一样的时候，indexOf()是找不到的
+    </script>
+</body>
+</html>

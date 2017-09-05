@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.factory('test', function (){
+	alert('factory函数执行了');
+	//只执行一次，数据在多个东西之间共享
+	return {a: 12};
+});
+
+app.controller('cont1', function ($scope, test){
+	test.a=5;
+});
+app.controller('cont2', function ($scope, test){
+	alert(test.a);
+	
+	test.a=55;
+});
+app.controller('cont3', function ($scope, test){
+	alert(test.a);
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<div  ng-controller="cont2"></div>
+	<div  ng-controller="cont3"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

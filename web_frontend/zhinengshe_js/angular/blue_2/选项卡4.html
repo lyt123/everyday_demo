@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 input {background:#CCC;}
+#div1 input.active {background:yellow;}
+#div1 div {width:300px; height:300px; background:#CCC; border:1px solid black;}
+</style>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope){
+	$scope.now=0;
+	
+	$scope.arr=[
+		{name: '电视', content: '大师的飞洒发'},
+		{name: '音乐', content: 'teryrtyrt'},
+		{name: '体育', content: '56756867867'}
+	];
+});
+</script>
+</head>
+
+<body>
+<div id="div1" ng-controller="cont1">
+    <input ng-repeat="json in arr" type="button" value="{{json.name}}" class="{{now==$index?'active':''}}" ng-click="now=$index" />
+    <div ng-repeat="json in arr" ng-show="now==$index">{{json.content}}</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

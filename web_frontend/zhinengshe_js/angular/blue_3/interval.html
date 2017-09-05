@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/angular.js"></script>
+<script>
+var app=angular.module('test', []);
+
+app.controller('cont1', function ($scope, $interval){
+	$scope.a=0;
+	
+	/*setInterval(function (){
+		$scope.a++;
+	}, 100);*/
+	$interval(function (){
+		$scope.a++;
+	}, 100);
+});
+</script>
+</head>
+
+<body ng-controller="cont1">
+	<div>{{a}}</div>
+</body>
+</html>

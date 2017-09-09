@@ -92,8 +92,55 @@ function getTeacherClassHtmlFromShoolWebsite($teacher_name)
     return $result;
 }
 
-getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel();
+//getTeacherNameFromExeclAndExtractTeacherClassFromShoolWebsiteHtmlThenInfillExcel();
 
 //$html = getTeacherClassHtmlFromShoolWebsite('刘佳');
 //echo $html;
 //var_dump(extractTeacherClassFromHtml($html));
+
+
+//include a class for excel handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+include_once('excel/PHPExcel.php');
+
+//transfer the excel data into two-dimension array
+$objPHPExcel = \PHPExcel_IOFactory::load('teacher_name.xls');
+$teacher_info = $objPHPExcel->getActiveSheet()->toArray(null, true, true, false);
+print_r($teacher_info);

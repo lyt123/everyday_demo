@@ -29,6 +29,13 @@ function object_dump($object, $show_methods = true)
     }
 }
 
+function nice_print_r($data)
+{
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+}
+
 
 //容器类装实例或提供实例的回调函数
 class Container
@@ -44,19 +51,19 @@ class Container
 
         //如果提供的参数不是回调函数，则产生默认的回调函数
         if (!$concrete instanceof Closure) {
+            echo 1;
             $concrete = $this->getClosure($abstract, $concrete);
         }
 
         //shared变量的意义在这里没有体现
         $this->bindings[$abstract] = compact('concrete', 'shared');
         var_dump('$bindings :');
-        print_r($this->bindings);
+        nice_print_r($this->bindings);
     }
 
     //默认生成实例的回调函数
     protected function getClosure($abstract, $concrete)
     {
-
         return function ($c) use ($abstract, $concrete) {
             //这个闭包方法在下面的build方法中$concrete($this)中才真正调用
             $method = ($abstract == $concrete) ? 'build' : 'make';
@@ -75,14 +82,16 @@ class Container
 
         var_dump('make parameter', $abstract, 'getConcrete:');
 
-        print_r($concrete);
+        nice_print_r($concrete);
 
         //isBuildable函数判断$abstract是否是$concrete的别名
         if ($this->isBuildable($concrete, $abstract)) {
+            echo 3;
             $object = $this->build($concrete);
         } else {
             $object = $this->make($concrete);
         }
+        var_dump('$object');
         object_dump($object);
         return $object;
     }
@@ -97,6 +106,7 @@ class Container
     {
 
         if (!isset($this->bindings[$abstract])) {
+            echo 2;
             return $abstract;
         }
 

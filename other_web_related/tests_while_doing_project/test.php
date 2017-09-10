@@ -204,4 +204,25 @@ var_dump($add10(2)); // 12*/
 
 //var_dump(urldecode('https://blog.yangxitian.cn/2016/05/28/centOS%E4%B8%8B%E5%88%A9%E7%94%A8webhook%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%EF%BC%88PHP%EF%BC%89/'));
 //echo random_bytes(12);
-var_dump(urldecode('https://itunes.apple.com/cn/app/%E8%AE%BE%E8%AE%A1%E8%81%94%E7%9B%9F/id1262883750?l=en&mt=8'));
+//var_dump(urldecode('https://itunes.apple.com/cn/app/%E8%AE%BE%E8%AE%A1%E8%81%94%E7%9B%9F/id1262883750?l=en&mt=8'));
+
+function sum($carry, $item)
+{
+    var_dump($carry, $item);
+
+    $carry += $item;
+    return $carry;
+}
+
+//function product($carry, $item)
+//{
+//    $carry *= $item;
+//    return $carry;
+//}
+
+$a = array(1, 2, 3, 4, 5);
+//$x = array();
+
+var_dump(array_reduce($a, "sum", 'hehe')); // int(15)
+//var_dump(array_reduce($a, "product", 10)); // int(1200), because: 10*1*2*3*4*5
+//var_dump(array_reduce($x, "sum", "No data to reduce")); // string(17) "No data to reduce"

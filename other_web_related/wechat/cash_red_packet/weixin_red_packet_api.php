@@ -77,6 +77,7 @@ class wxPay
         //cert 与 key 分别属于两个.pem文件
         //请确保您的libcurl版本是否支持双向认证，版本高于7.20.1
         curl_setopt($ch, CURLOPT_SSLCERT, dirname(__FILE__) . DIRECTORY_SEPARATOR .
+
             'zhengshu' . DIRECTORY_SEPARATOR . 'apiclient_cert.pem');
         curl_setopt($ch, CURLOPT_SSLKEY, dirname(__FILE__) . DIRECTORY_SEPARATOR .
             'zhengshu' . DIRECTORY_SEPARATOR . 'apiclient_key.pem');

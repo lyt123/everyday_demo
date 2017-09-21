@@ -204,15 +204,15 @@ var_dump($add10(2)); // 12*/
 
 //var_dump(urldecode('https://blog.yangxitian.cn/2016/05/28/centOS%E4%B8%8B%E5%88%A9%E7%94%A8webhook%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%EF%BC%88PHP%EF%BC%89/'));
 //echo random_bytes(12);
-//var_dump(urldecode('https://itunes.apple.com/cn/app/%E8%AE%BE%E8%AE%A1%E8%81%94%E7%9B%9F/id1262883750?l=en&mt=8'));
+//var_dump(urldecode('https://pan.baidu.com/disk/home#list/vmode=list&path=%2F%E6%8A%80%E6%9C%AF%E8%A7%86%E9%A2%91%2F%E9%9F%A9%E9%A1%BA%E5%B9%B3%E5%90%84%E7%A7%8D%E8%A7%86%E9%A2%91%E9%9B%86%E5%90%88%2F%E6%AF%8F%E5%AD%A6%E7%BD%91%20%E9%9F%A9%E9%A1%BA%E5%B9%B3%20%E5%A4%A7%E5%9E%8B%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99Memcached%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF(%E5%AE%8C%E6%95%B4%E7%89%88)%E3%80%90%E9%99%90%E6%97%B6%E7%89%B9%E4%BB%B7%E8%AF%BE%E7%A8%8B%EF%BC%8C%E7%8B%AC%E5%AE%B6%E9%85%8D%E6%9D%83%E5%A8%81%E7%9A%84PPT%20%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%20%E7%BB%83%E4%B9%A0%E9%A2%98%E3%80%91'));
 
-function sum($carry, $item)
-{
-    var_dump($carry, $item);
-
-    $carry += $item;
-    return $carry;
-}
+//function sum($carry, $item)
+//{
+//    var_dump($carry, $item);
+//
+//    $carry += $item;
+//    return $carry;
+//}
 
 //function product($carry, $item)
 //{
@@ -220,9 +220,10 @@ function sum($carry, $item)
 //    return $carry;
 //}
 
-$a = array(1, 2, 3, 4, 5);
+//$a = array(1, 2, 3, 4, 5);
 //$x = array();
 
-var_dump(array_reduce($a, "sum", 'hehe')); // int(15)
+//var_dump(array_reduce($a, "sum", 'hehe')); // int(15)
 //var_dump(array_reduce($a, "product", 10)); // int(1200), because: 10*1*2*3*4*5
 //var_dump(array_reduce($x, "sum", "No data to reduce")); // string(17) "No data to reduce"
+var_dump( $_SERVER);

@@ -34,7 +34,7 @@ function then()
     $prepare = function() { echo "请求向路由器传递，返回响应...".'<br>';};
     $go = array_reduce($steps,"goFun",$prepare);
     //第一个是要处理的数组，第二个是处理函数名称或回调函数，第三个是可选参数，为初始化参数，被当作数组中第一个值来处理，若数组为空则作为返回值。
-    var_dump($go);//在postman中看看输出的结果
+    print_r($go);//在postman中看看输出的结果
     $go();
 }
 

@@ -22,5 +22,8 @@ This reposity records practices I learned in daily life. Bellow introduces the f
 1.long_polling：js实现轮询
 # other_web_related
 1.domain_register_use:阿里云备案要求网站有图文描述（个人的不能有团队之类的词语，会有些麻烦），将这个文件里的东西都放到服务器上，就能通过了
-
+# devops
+## python
+1.shell_operate:使用python脚本执行命令行命令
+## shell
 

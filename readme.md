@@ -14,6 +14,8 @@ This reposity records practices I learned in daily life. Bellow introduces the f
 10.laravel_concepts：仿写一个自己的ioc容器,涉及反射、依赖注入、匿名函数<br/>
 11.session_id:当客户端禁用cookie时，以这种方式来标识session<br/>
 12.upload_picture:php单图和多图上传
+## java
+1.CommandLineTool:执行mvn package，java -jar target/xx.jar -f xxx，在代码里可获取到参数
 ## nginx
 1.nginx_video_learn:看燕十八的nginx视频，记录下用于配置负载均衡和链接memcached的nginx.conf配置
 # web_frontend

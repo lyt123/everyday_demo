@@ -1,0 +1,1 @@
+*/5 * * * * flock -xn /home/work/logs/locks/upload_google.lock -c 'python3.7 /home/work/scripts/everyday_demo/devops/python/command_line.py' >> /home/work/logs/upload_google.log 2>&1
